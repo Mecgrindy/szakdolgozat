@@ -1,44 +1,54 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>Organization</ion-title>
-  </ion-navbar>
+  <ion-toolbar>
+    <ion-searchbar></ion-searchbar>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-fab right bottom>
+    <button ion-fab color="accent">
+      <ion-icon name="add"></ion-icon>
+    </button>
+  </ion-fab>
   <ion-card>
-
-    <ion-item>
-      <h2>Doge Farm
-        <small style="color:green">(Active)</small>
-      </h2>
-      <h3>Doge Farm KFT, Doge Org, The Organization</h3>
-      <p>
-        <ion-icon name="call"></ion-icon> 061 8525235
-        <br> Type bugemuge
-      </p>
-    </ion-item>
-
-    <ion-list no-lines>
+    <ion-row>
       <ion-item>
-        <h2>Address</h2>
-        <p>Közép Dogesor</p>
-        <button ion-button clear item-end>+2</button>
+        <h2>OrgName
+          <ion-badge>OrgType</ion-badge>
+        </h2>
+        <small style="color:green" item-end>(Active)</small>
+        <p>OrgAlias</p>
       </ion-item>
-    </ion-list>
+      <ion-item>
+        <ion-icon name="mail" item-start small style="color:silver"></ion-icon>
+        <p>dog@doge.dog</p>
+      </ion-item>
+      <ion-item>
+        <ion-icon name="call" item-start small style="color:silver"></ion-icon>
+        <p>061584621</p>
+      </ion-item>
+      <ion-item>
+        <ion-icon name="home" item-start small style="color:silver"></ion-icon>
+        <p>Főfasor 12, Szeged</p>
+        <ion-badge item-end>+2</ion-badge>
+      </ion-item>
+    </ion-row>
 
     <ion-row>
       <ion-col>
         <button ion-button icon-left clear small>
-          <ion-icon name="book"></ion-icon>
-          <div>3 Contact</div>
+          <ion-icon name="briefcase"></ion-icon>
+          <div>RefOrg</div>
+        </button>
+        <button ion-button icon-left clear small>
+          <ion-icon name="contact"></ion-icon>
+          <div>3 contact</div>
+        </button>
+        <button ion-button icon-left clear small>
+          <ion-icon name="link"></ion-icon>
+          <div>3 end</div>
         </button>
       </ion-col>
-      <ion-col>
-          <button ion-button icon-left clear small>
-            <ion-icon name="briefcase"></ion-icon>
-            <div>1 Organization</div>
-          </button>
-        </ion-col>
     </ion-row>
 
   </ion-card>

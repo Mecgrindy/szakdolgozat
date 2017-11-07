@@ -1,3 +1,4 @@
+//import { PatientPage } from './../pages/patient/patient';
 import { TabsPage } from './../pages/tabs/tabs';
 //import { LoginPage } from './../pages/login/login';
 import { Component } from '@angular/core';

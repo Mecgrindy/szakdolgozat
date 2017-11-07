@@ -6,10 +6,11 @@
 
 <ion-content>
   <ion-fab right bottom>
-    <button ion-fab color="accent">
+    <button ion-fab color="accent" (click)="openNew()">
       <ion-icon name="add"></ion-icon>
     </button>
   </ion-fab>
+
   <ion-card>
     <ion-row (click)="openPerson()">
       <ion-item>
@@ -18,7 +19,7 @@
         </ion-avatar>
         <h2>Doge Dogo</h2>
         <small style="color:green" item-end>(Active)</small>
-        <p>Male 1994.12.04</p>
+        <p>Male • 1994.12.04</p>
       </ion-item>
 
       <ion-item>

@@ -1,3 +1,4 @@
+import { NewPage } from './../pages/new/new';
 import { LoginPage } from './../pages/login/login';
 import { InfoPage } from './../pages/info/info';
 import { PatientPage } from './../pages/patient/patient';
@@ -27,6 +28,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     InfoPage,
     TabsPage,
     LoginPage,
+    NewPage,
   ],
   imports: [
     BrowserModule,
@@ -42,7 +44,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     PatientPage,
     TabsPage,
     InfoPage,
-    LoginPage
+    LoginPage,
+    NewPage,
   ],
   providers: [
     StatusBar,

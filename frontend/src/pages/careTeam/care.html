@@ -1,9 +1,57 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>Care Team</ion-title>
-  </ion-navbar>
+  <ion-toolbar>
+    <ion-searchbar></ion-searchbar>
+  </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content>
+  <ion-fab right bottom>
+    <button ion-fab color="accent">
+      <ion-icon name="add"></ion-icon>
+    </button>
+  </ion-fab>
+  <ion-card>
+    <ion-row>
+      <ion-item>
+        <h2>CareTeam Name
+          <ion-badge>Category</ion-badge>
+        </h2>
+        <small style="color:green" item-end>(Active)</small>
+        <p>1988.12.03 • 1988.12.05</p>
+      </ion-item>
+      <ion-item>
+        <ion-thumbnail item-start>
+          <img src="../assets/imgs/jon.png">
+        </ion-thumbnail>
+        <h3>Owner</h3>
+        <p>Unknown • 1988.12.05</p>
+        <button ion-button clear item-end>View</button>
+      </ion-item>
+      <ion-item>
+        <p>context</p>
+      </ion-item>
+      <ion-item>
+        <p>ReasonCode</p>
+        <ion-badge item-end>+2</ion-badge>
+      </ion-item>
+    </ion-row>
 
+    <ion-row>
+      <ion-col>
+        <button ion-button icon-left clear small>
+          <ion-icon name="briefcase"></ion-icon>
+          <div>3 Org</div>
+        </button>
+        <button ion-button icon-left clear small>
+          <ion-icon name="people"></ion-icon>
+          <div>25 part</div>
+        </button>
+        <button ion-button icon-left clear small>
+          <ion-icon name="text"></ion-icon>
+          <div>25 note</div>
+        </button>
+      </ion-col>
+    </ion-row>
+
+  </ion-card>
 </ion-content>

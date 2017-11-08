@@ -2,7 +2,7 @@
   <ion-navbar>
     Doge dog
     <ion-buttons end>
-      <button ion-button icon-only>
+      <button ion-button icon-only (click)="openEdit()">
         <ion-icon name="create"></ion-icon>
       </button>
       <button ion-button icon-only>
@@ -10,56 +10,69 @@
       </button>
     </ion-buttons>
   </ion-navbar>
-
+  <ion-toolbar no-border-top>
+    <ion-segment [(ngModel)]="info">
+      <ion-segment-button value="basic">
+        Basic
+      </ion-segment-button>
+      <ion-segment-button value="links">
+        Links
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-card no-margin style="width:100%;">
-    <img src="../assets/imgs/doge.jpg" />
-  </ion-card>
-  <ion-item>
-    <h2>Doge dogo</h2>
-    <small style="color:green" item-end>(Active)</small>
-    <p>Male • 1994.12.02</p>
-  </ion-item>
-  <ion-item-group>
-    <ion-item-divider color="light">Contact</ion-item-divider>
-    <ion-item>
-      <ion-icon name="call" item-start small></ion-icon>
-      056487889
-    </ion-item>
-    <ion-item>
-      <ion-icon name="mail" item-start small></ion-icon>
-      doge@gmail.com
-    </ion-item>
-  </ion-item-group>
-  <ion-item-group>
-    <ion-item-divider color="light">Address</ion-item-divider>
-    <ion-item>Doge utca 2, Szeged</ion-item>
-    <ion-item>Mahemu 12, Budapest</ion-item>
-  </ion-item-group>
-  <ion-item-group margin-bottom>
-    <ion-item-divider color="light">Other</ion-item-divider>
-    <ion-item>
-      <h2>Organizationcombo</h2>
-      <p>valami</p>
-      <button ion-button clear item-end>View</button>
-    </ion-item>
-    <ion-item>
-      <ion-thumbnail item-start>
-        <img src="../assets/imgs/ali.jpg">
-      </ion-thumbnail>
-      <h2>Ali Connors</h2>
-      <p>Female • 1988.12.05</p>
-      <button ion-button clear item-end>View</button>
-    </ion-item>
-    <ion-item>
-      <ion-thumbnail item-start>
-        <img src="../assets/imgs/jon.png">
-      </ion-thumbnail>
-      <h2>Jon Doe</h2>
-      <p>Unknown • 1988.12.05</p>
-      <button ion-button clear item-end>View</button>
-    </ion-item>
-  </ion-item-group>
+  <div [ngSwitch]="info">
+    <div *ngSwitchCase="'basic'">
+      <ion-card no-margin style="width:100%;">
+        <img src="../assets/imgs/doge.jpg" />
+      </ion-card>
+      <ion-item>
+        <h2>Doge dogo</h2>
+        <small style="color:green" item-end>(Active)</small>
+        <p>Male • 1994.12.02</p>
+      </ion-item>
+      <ion-item-group>
+        <ion-item-divider color="light">Contact</ion-item-divider>
+        <ion-item>
+          <ion-icon name="call" item-start small></ion-icon>
+          056487889
+        </ion-item>
+        <ion-item>
+          <ion-icon name="mail" item-start small></ion-icon>
+          doge@gmail.com
+        </ion-item>
+      </ion-item-group>
+      <ion-item-group>
+        <ion-item-divider color="light">Address</ion-item-divider>
+        <ion-item>Doge utca 2, Szeged</ion-item>
+        <ion-item>Mahemu 12, Budapest</ion-item>
+      </ion-item-group>
+      <ion-item>
+        <h2>Organizationcombo</h2>
+        <p>valami</p>
+        <button ion-button clear item-end>View</button>
+      </ion-item>
+    </div>
+
+    <div *ngSwitchCase="'links'">
+      <ion-item>
+        <ion-thumbnail item-start>
+          <img src="../assets/imgs/ali.jpg">
+        </ion-thumbnail>
+        <h2>Ali Connors</h2>
+        <p>Female • 1988.12.05</p>
+        <button ion-button clear item-end>View</button>
+      </ion-item>
+      <ion-item>
+        <ion-thumbnail item-start>
+          <img src="../assets/imgs/jon.png">
+        </ion-thumbnail>
+        <h2>Jon Doe</h2>
+        <p>Unknown • 1988.12.05</p>
+        <button ion-button clear item-end>View</button>
+      </ion-item>
+    </div>
+  </div>
 </ion-content>

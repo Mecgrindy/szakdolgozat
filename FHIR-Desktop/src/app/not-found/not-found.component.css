@@ -1,0 +1,14 @@
+.not-found-panel{
+  background-color: white;
+  width: 200px;
+  min-height: 100px;
+}
+
+.not-found-panel h2{
+  text-align: center;
+}
+
+.centered-button{
+  display: flex;
+  justify-content: center;
+}

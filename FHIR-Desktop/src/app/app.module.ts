@@ -36,6 +36,12 @@ import {
 import {CdkTableModule} from '@angular/cdk/table';
 import { AppComponent } from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { LoginComponent } from './login/login.component';
+import { RouterModule } from '@angular/router';
+import { appRoutes } from './app.routes';
+import 'hammerjs';
+import { RegistrationComponent } from './registration/registration.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   exports: [
@@ -71,16 +77,19 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     MatTabsModule,
     MatToolbarModule,
     MatTooltipModule,
-  ]
+  ],
 })
 export class MyMaterialModule {}
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent, LoginComponent, RegistrationComponent, NotFoundComponent
   ],
   imports: [
-    BrowserModule, BrowserAnimationsModule, MyMaterialModule
+    BrowserModule, BrowserAnimationsModule, MyMaterialModule,
+    RouterModule.forRoot(
+      appRoutes,
+    ),
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,19 @@
+.login-panel{
+  background-color: white;
+  width: 30%;
+  min-width: 320px;
+  min-height: 400px; 
+}
+.login-panel h2,h4{
+  margin: 0;
+}
+.login-form{
+  width: 100%;
+  margin: 30px 0; 
+}
+.login-form mat-form-field{
+  width: 100%;
+}
+.login-form button{
+  float: right;
+}

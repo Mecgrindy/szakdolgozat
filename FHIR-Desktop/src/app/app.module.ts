@@ -1,3 +1,6 @@
+import { TranslatePipe } from './translate/translate.pipe';
+import { TranslateService } from './translate/translate.service';
+import { TRANSLATION_PROVIDERS } from './translate/translations';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {
@@ -83,7 +86,7 @@ export class MyMaterialModule {}
 
 @NgModule({
   declarations: [
-    AppComponent, LoginComponent, RegistrationComponent, NotFoundComponent
+    AppComponent, LoginComponent, RegistrationComponent, NotFoundComponent, TranslatePipe
   ],
   imports: [
     BrowserModule, BrowserAnimationsModule, MyMaterialModule,
@@ -91,7 +94,7 @@ export class MyMaterialModule {}
       appRoutes,
     ),
   ],
-  providers: [],
+  providers: [TRANSLATION_PROVIDERS, TranslateService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

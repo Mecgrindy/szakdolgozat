@@ -1,5 +1,5 @@
 <mat-toolbar class="home-toolbar mat-elevation-z1">
-  <button mat-button>
+  <button mat-button (click)="sidenav.toggle()">
     <mat-icon class="toolbar-icon">menu</mat-icon>
   </button>
   <a class="toolbar-logo" mat-button routerLink="/">FHIR</a>
@@ -26,14 +26,49 @@
   </button>
 </mat-toolbar>
 
-<h1>hahha</h1>
-<h1>hahha</h1>
-<h1>hahha</h1>
-<h1>hahha</h1>
-<h1>hahha</h1>
-<h1>hahha</h1>
-<h1>hahha</h1>
-<h1>hahha</h1>
-<h1>hahha</h1>
-<h1>hahha</h1>
-<h1>hahha</h1>
+
+<mat-sidenav-container class="home-container">
+  <mat-sidenav #sidenav mode="side" opened="true" class="home-sidenav" [fixedInViewport]="true" [fixedTopGap]="60" [fixedBottomGap]="0">
+    <mat-nav-list>
+      <mat-list-item>
+        <a matLine routerLink=".">
+          person
+        </a>
+      </mat-list-item>
+      <mat-list-item>
+        <a matLine routerLink=".">
+          patient
+        </a>
+      </mat-list-item>
+      <mat-list-item>
+        <a matLine routerLink=".">
+          group
+        </a>
+      </mat-list-item>
+      <mat-list-item>
+        <a matLine routerLink=".">
+          organization
+        </a>
+      </mat-list-item>
+      <mat-list-item>
+        <a matLine routerLink=".">
+          care team
+        </a>
+      </mat-list-item>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content class="home-content">
+    <h1>hahha</h1>
+    <h1>hahha</h1>
+    <h1>hahha</h1>
+    <h1>hahha</h1>
+    <h1>hahha</h1>
+    <h1>hahha</h1>
+    <h1>hahha</h1>
+    <h1>hahha</h1>
+    <h1>hahha</h1>
+    <h1>hahha</h1>
+    <h1>hahha</h1>
+  </mat-sidenav-content>
+</mat-sidenav-container>

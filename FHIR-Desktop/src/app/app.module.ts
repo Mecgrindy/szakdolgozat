@@ -45,6 +45,8 @@ import { appRoutes } from './app.routes';
 import 'hammerjs';
 import { RegistrationComponent } from './registration/registration.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { HomeComponent } from './home/home.component';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 @NgModule({
   exports: [
@@ -86,10 +88,10 @@ export class MyMaterialModule {}
 
 @NgModule({
   declarations: [
-    AppComponent, LoginComponent, RegistrationComponent, NotFoundComponent, TranslatePipe
+    AppComponent, HomeComponent, LoginComponent, RegistrationComponent, NotFoundComponent, TranslatePipe
   ],
   imports: [
-    BrowserModule, BrowserAnimationsModule, MyMaterialModule,
+    BrowserModule, BrowserAnimationsModule, MyMaterialModule, ReactiveFormsModule, FormsModule,
     RouterModule.forRoot(
       appRoutes,
     ),

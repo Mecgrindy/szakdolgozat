@@ -1,0 +1,39 @@
+<mat-toolbar class="home-toolbar mat-elevation-z1">
+  <button mat-button>
+    <mat-icon class="toolbar-icon">menu</mat-icon>
+  </button>
+  <a class="toolbar-logo" mat-button routerLink="/">FHIR</a>
+  <span class="toolbar-spacer-3"></span>
+  <form>
+    <mat-form-field floatLabel="never" class="search-width">
+      <input matInput placeholder="Search" aria-label="Search" [matAutocomplete]="auto" [formControl]="stateCtrl">
+      <mat-icon matSuffix>search</mat-icon>
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let state of filteredStates | async" [value]="state.name">
+          <img style="vertical-align:middle;" aria-hidden src="{{state.flag}}" height="25" />
+          <span>{{ state.name }}</span> |
+          <!-- <small>Population: {{state.population}}</small> -->
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+  </form>
+  <span class="toolbar-spacer-7"></span>
+  <button mat-button>
+    <mat-icon class="toolbar-icon">person_add</mat-icon>
+  </button>
+  <button mat-button>
+    <mat-icon class="toolbar-icon">account_circle</mat-icon>
+  </button>
+</mat-toolbar>
+
+<h1>hahha</h1>
+<h1>hahha</h1>
+<h1>hahha</h1>
+<h1>hahha</h1>
+<h1>hahha</h1>
+<h1>hahha</h1>
+<h1>hahha</h1>
+<h1>hahha</h1>
+<h1>hahha</h1>
+<h1>hahha</h1>
+<h1>hahha</h1>

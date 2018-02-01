@@ -1,0 +1,20 @@
+.toolbar-spacer-7 {
+  flex: .7 .7 auto;
+}
+.toolbar-spacer-3 {
+  flex: .3 .3 auto;
+}
+.toolbar-logo{
+  font-size: 24px;
+}
+.home-toolbar{
+  position: fixed;
+  left: 0;
+  top: 0;
+  background-color: rgb(249, 249, 249);
+}
+.search-width{
+  min-width: 200px;
+  width: 40vw;
+  padding: 0 14px;
+}

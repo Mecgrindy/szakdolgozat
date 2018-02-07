@@ -21,11 +21,36 @@
   <button mat-button>
     <mat-icon class="toolbar-icon">person_add</mat-icon>
   </button>
-  <button mat-button>
+  <button mat-button [matMenuTriggerFor]="userProfile">
     <mat-icon class="toolbar-icon">account_circle</mat-icon>
   </button>
 </mat-toolbar>
 
+<mat-menu #userProfile="matMenu">
+  <button mat-menu-item>
+    <span>Logout</span>
+  </button>
+  <mat-divider></mat-divider>
+  <button mat-menu-item>
+    <mat-icon> settings </mat-icon>
+    <span>Settings</span>
+  </button>
+  <button mat-menu-item>
+    <mat-icon> help </mat-icon>
+    <span>Help</span>
+  </button>
+  <button mat-menu-item>
+    <mat-icon> feedback </mat-icon>
+    <span>Feedback</span>
+  </button>
+  <mat-divider></mat-divider>
+  <button mat-menu-item [matMenuTriggerFor]="languageMenu">Language: English</button>
+</mat-menu>
+
+<mat-menu #languageMenu="matMenu">
+  <button mat-menu-item>English</button>
+  <button mat-menu-item>Magyar</button>
+</mat-menu>
 
 <mat-sidenav-container class="home-container">
   <mat-sidenav #sidenav mode="side" opened="true" class="home-sidenav" [fixedInViewport]="true" [fixedTopGap]="60" [fixedBottomGap]="0">

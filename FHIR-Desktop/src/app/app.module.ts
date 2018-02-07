@@ -47,6 +47,7 @@ import { RegistrationComponent } from './registration/registration.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { HomeComponent } from './home/home.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { AddComponent } from './add/add.component';
 
 @NgModule({
   exports: [
@@ -88,7 +89,7 @@ export class MyMaterialModule {}
 
 @NgModule({
   declarations: [
-    AppComponent, HomeComponent, LoginComponent, RegistrationComponent, NotFoundComponent, TranslatePipe
+    AppComponent, HomeComponent, LoginComponent, RegistrationComponent, NotFoundComponent, AddComponent,TranslatePipe
   ],
   imports: [
     BrowserModule, BrowserAnimationsModule, MyMaterialModule, ReactiveFormsModule, FormsModule,

@@ -3,7 +3,6 @@
     <mat-icon class="toolbar-icon">menu</mat-icon>
   </button>
   <a class="toolbar-logo" mat-button routerLink="/">FHIR</a>
-  <span class="toolbar-spacer-3"></span>
   <form>
     <mat-form-field floatLabel="never" class="search-width">
       <input matInput placeholder="Search" aria-label="Search" [matAutocomplete]="auto" [formControl]="stateCtrl">
@@ -17,7 +16,7 @@
       </mat-autocomplete>
     </mat-form-field>
   </form>
-  <span class="toolbar-spacer-7"></span>
+  <span class="toolbar-spacer"></span>
   <button mat-button>
     <mat-icon class="toolbar-icon">person_add</mat-icon>
   </button>
@@ -84,16 +83,37 @@
   </mat-sidenav>
 
   <mat-sidenav-content class="home-content">
-    <h1>hahha</h1>
-    <h1>hahha</h1>
-    <h1>hahha</h1>
-    <h1>hahha</h1>
-    <h1>hahha</h1>
-    <h1>hahha</h1>
-    <h1>hahha</h1>
-    <h1>hahha</h1>
-    <h1>hahha</h1>
-    <h1>hahha</h1>
-    <h1>hahha</h1>
+
+    <mat-card class="person-card">
+      <mat-card-header>
+        <div mat-card-avatar class="person-header-image"></div>
+        <mat-card-title>Identifier
+        </mat-card-title>
+        <mat-card-subtitle><b>Bolhás Kutyuli</b> (Male)</mat-card-subtitle>
+        <span class="toolbar-spacer"></span>
+        <button mat-icon-button [matMenuTriggerFor]="personMenu">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+      </mat-card-header>
+      <mat-card-content class="person-content-pad">
+        <p>
+          &nbsp; 1997-12-17
+        </p>
+      </mat-card-content>
+      <mat-card-actions class="person-action-pad">
+        <button mat-button>ORGANIZATION ORG</button>
+        <button mat-button>LINKS 4</button>
+      </mat-card-actions>
+    </mat-card>
+    <mat-menu #personMenu="matMenu">
+      <button mat-menu-item>
+        <mat-icon>edit</mat-icon>
+        <span>Edit</span>
+      </button>
+      <button mat-menu-item>
+        <mat-icon>delete</mat-icon>
+        <span>Delete</span>
+      </button>
+    </mat-menu>
   </mat-sidenav-content>
 </mat-sidenav-container>

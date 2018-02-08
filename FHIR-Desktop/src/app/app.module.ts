@@ -39,15 +39,15 @@ import {
 import {CdkTableModule} from '@angular/cdk/table';
 import { AppComponent } from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from './components/login/login.component';
 import { RouterModule } from '@angular/router';
 import { appRoutes } from './app.routes';
 import 'hammerjs';
-import { RegistrationComponent } from './registration/registration.component';
-import { NotFoundComponent } from './not-found/not-found.component';
-import { HomeComponent } from './home/home.component';
+import { RegistrationComponent } from './components/registration/registration.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
+import { HomeComponent } from './components/home/home.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { AddComponent } from './add/add.component';
+import { AddComponent } from './components/add/add.component';
 
 @NgModule({
   exports: [
@@ -89,7 +89,7 @@ export class MyMaterialModule {}
 
 @NgModule({
   declarations: [
-    AppComponent, HomeComponent, LoginComponent, RegistrationComponent, NotFoundComponent, AddComponent,TranslatePipe
+    AppComponent, HomeComponent, LoginComponent, RegistrationComponent, NotFoundComponent, AddComponent, TranslatePipe
   ],
   imports: [
     BrowserModule, BrowserAnimationsModule, MyMaterialModule, ReactiveFormsModule, FormsModule,

@@ -21,3 +21,9 @@ body{
 .home-toolbar .mat-form-field-suffix .mat-icon{
   font-size: 24px;
 }
+
+.mat-card-avatar{
+  border-radius: 0 !important;
+  width: 80px !important;
+  height: 80px !important;
+}

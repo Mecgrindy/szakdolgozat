@@ -35,10 +35,7 @@
     "dataSource": "db",
     "public": false
   },
-  "Message": {
-    "dataSource": null
-  },
-  "user": {
+  "person": {
     "dataSource": "db",
     "public": true
   }

@@ -1,0 +1,28 @@
+{
+  "name": "communication",
+  "plural": "communications",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "language": {
+      "type": "string"
+    },
+    "preferred": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "validations": [],
+  "relations": {
+    "patientLanguages": {
+      "type": "hasOne",
+      "model": "patient",
+      "foreignKey": "patientId"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

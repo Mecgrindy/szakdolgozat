@@ -1,0 +1,32 @@
+{
+  "name": "personLink",
+  "plural": "personLink",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "target": {
+      "type": "any"
+    },
+    "assurance": {
+      "type": "number",
+      "required": true,
+      "default": 1
+    }
+  },
+  "validations": [],
+  "relations": {
+    "personReference": {
+      "type": "hasOne",
+      "model": "person",
+      "foreignKey": "",
+      "options": {
+        "disableInclude": true
+      }
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

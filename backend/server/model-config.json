@@ -38,5 +38,41 @@
   "person": {
     "dataSource": "db",
     "public": true
+  },
+  "personLink": {
+    "dataSource": "db",
+    "public": true
+  },
+  "patient": {
+    "dataSource": "db",
+    "public": true
+  },
+  "patientAnimal": {
+    "dataSource": "db",
+    "public": true
+  },
+  "patientLink": {
+    "dataSource": "db",
+    "public": true
+  },
+  "communication": {
+    "dataSource": "db",
+    "public": true
+  },
+  "contact": {
+    "dataSource": "db",
+    "public": true
+  },
+  "Organization": {
+    "dataSource": "db",
+    "public": true
+  },
+  "organization": {
+    "dataSource": "db",
+    "public": true
+  },
+  "orgContact": {
+    "dataSource": "db",
+    "public": true
   }
 }

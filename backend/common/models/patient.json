@@ -1,6 +1,6 @@
 {
-  "name": "person",
-  "plural": "people",
+  "name": "patient",
+  "plural": "patients",
   "base": "PersistedModel",
   "idInjection": true,
   "options": {
@@ -10,7 +10,22 @@
     "id": {
       "type": "number"
     },
+    "identifier": {
+      "type": "number"
+    },
+    "active": {
+      "type": "boolean",
+      "default": false
+    },
     "name": {
+      "type": "string"
+    },
+    "telecom": {
+      "type": [
+        "string"
+      ]
+    },
+    "maritalStatus": {
       "type": "string"
     },
     "gender": {
@@ -25,25 +40,19 @@
         "string"
       ]
     },
+    "deceased": {
+      "type": "object"
+    },
+    "multipleBirth": {
+      "type": "object"
+    },
     "photo": {
       "type": "string"
     },
     "managingOrganization": {
       "type": "number"
     },
-    "active": {
-      "type": "boolean",
-      "default": false
-    },
-    "link": {
-      "type": "number"
-    },
-    "telecom": {
-      "type": [
-        "string"
-      ]
-    },
-    "identifier": {
+    "generalPractitioner": {
       "type": "number"
     }
   },

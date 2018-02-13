@@ -1,0 +1,39 @@
+{
+  "name": "orgContact",
+  "plural": "orgContacts",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "purpose": {
+      "type": "any"
+    },
+    "name": {
+      "type": [
+        "string"
+      ]
+    },
+    "telecom": {
+      "type": [
+        "string"
+      ]
+    },
+    "address": {
+      "type": [
+        "string"
+      ]
+    }
+  },
+  "validations": [],
+  "relations": {
+    "orgContacts": {
+      "type": "hasOne",
+      "model": "organization",
+      "foreignKey": "organizationId"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

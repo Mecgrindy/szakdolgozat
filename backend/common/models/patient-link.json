@@ -1,0 +1,29 @@
+{
+  "name": "patientLink",
+  "plural": "patientLink",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "other": {
+      "type": [
+        "number"
+      ]
+    },
+    "type": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "patientLinks": {
+      "type": "hasOne",
+      "model": "patient",
+      "foreignKey": "patientId"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

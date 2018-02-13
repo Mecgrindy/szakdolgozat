@@ -1,0 +1,33 @@
+{
+  "name": "patientAnimal",
+  "plural": "patientAnimal",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "id": {
+      "type": "number"
+    },
+    "species": {
+      "type": "string"
+    },
+    "breed": {
+      "type": "string"
+    },
+    "genderStatus": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "patientRelation": {
+      "type": "hasOne",
+      "model": "patient",
+      "foreignKey": "patientId"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

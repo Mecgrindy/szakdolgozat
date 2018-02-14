@@ -74,5 +74,25 @@
   "orgContact": {
     "dataSource": "db",
     "public": true
+  },
+  "group": {
+    "dataSource": "db",
+    "public": true
+  },
+  "member": {
+    "dataSource": "db",
+    "public": true
+  },
+  "characteristic": {
+    "dataSource": "db",
+    "public": false
+  },
+  "careTeam": {
+    "dataSource": "db",
+    "public": false
+  },
+  "participant": {
+    "dataSource": "db",
+    "public": true
   }
 }

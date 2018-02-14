@@ -1,0 +1,52 @@
+{
+  "name": "careTeam",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "id": {
+      "type": "number"
+    },
+    "identifier": {
+      "type": "number"
+    },
+    "status": {
+      "type": "object"
+    },
+    "category": {
+      "type": "object"
+    },
+    "name": {
+      "type": [
+        "string"
+      ]
+    },
+    "subject": {
+      "type": "number"
+    },
+    "context": {
+      "type": "any"
+    },
+    "period": {
+      "type": "any"
+    },
+    "reasonCode": {
+      "type": "any"
+    },
+    "reasonReference": {
+      "type": "any"
+    },
+    "managingOrganization": {
+      "type": "number"
+    },
+    "note": {
+      "type": "object"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

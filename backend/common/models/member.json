@@ -1,0 +1,32 @@
+{
+  "name": "member",
+  "plural": "members",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "entity": {
+      "type": "number"
+    },
+    "period": {
+      "type": "any"
+    },
+    "inactive": {
+      "type": "boolean",
+      "required": true,
+      "default": false
+    }
+  },
+  "validations": [],
+  "relations": {
+    "groupMember": {
+      "type": "hasOne",
+      "model": "group",
+      "foreignKey": "groupId"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

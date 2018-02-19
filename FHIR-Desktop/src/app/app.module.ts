@@ -1,3 +1,4 @@
+import { CoverComponent } from './components/cover/cover.component';
 import { TranslatePipe } from './translate/translate.pipe';
 import { TranslateService } from './translate/translate.service';
 import { TRANSLATION_PROVIDERS } from './translate/translations';
@@ -89,7 +90,7 @@ export class MyMaterialModule {}
 
 @NgModule({
   declarations: [
-    AppComponent, HomeComponent, LoginComponent, RegistrationComponent, NotFoundComponent, AddComponent, TranslatePipe
+    AppComponent, CoverComponent , HomeComponent, LoginComponent, RegistrationComponent, NotFoundComponent, AddComponent, TranslatePipe
   ],
   imports: [
     BrowserModule, BrowserAnimationsModule, MyMaterialModule, ReactiveFormsModule, FormsModule,

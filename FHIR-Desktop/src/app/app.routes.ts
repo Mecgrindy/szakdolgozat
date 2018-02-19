@@ -4,14 +4,16 @@ import { LoginComponent } from './components/login/login.component';
 import { RegistrationComponent } from './components/registration/registration.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { AddComponent } from './components/add/add.component';
+import { CoverComponent } from './components/cover/cover.component';
 
 export const appRoutes: Routes = [
+  { path: '', component: CoverComponent },
   { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'registration', component: RegistrationComponent },
   { path: 'add', component: AddComponent },
 
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: '', redirectTo: '', pathMatch: 'full' },
   { path: '**', component: NotFoundComponent },
 
   /*{

@@ -3,16 +3,21 @@
     <h2>Sign up</h2>
     <h4>for Free</h4>
     <div class="registration-form">
-      <mat-form-field>
-        <input matInput placeholder="Email">
-      </mat-form-field>
-      <mat-form-field>
-        <input type="password" matInput placeholder="Password">
-      </mat-form-field>
-      <mat-form-field>
-        <input type="password" matInput placeholder="Re-Type">
-      </mat-form-field>
-      <button mat-raised-button color="primary">Registration</button>
+      <form [formGroup]="regForm" (ngSubmit)="onSubmit()">
+        <mat-form-field>
+          <input matInput placeholder="Email" formControlName="email" required>
+          <mat-error *ngIf="regForm.controls.email.invalid">{{getErrorMessage(regForm.controls.email)}}</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input type="password" matInput placeholder="Password" formControlName="password" required>
+          <mat-error *ngIf="regForm.controls.password.invalid">{{getErrorMessage(regForm.controls.password)}}</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input type="password" matInput placeholder="Re-Password" formControlName="rePassword" required>
+          <mat-error *ngIf="regForm.controls.rePassword.invalid">{{getErrorMessage(regForm.controls.rePassword)}}</mat-error>
+        </mat-form-field>
+        <button mat-raised-button color="primary" type="submit" value="submit" [disabled]="!regForm.valid">Registration</button>
+      </form>
     </div>
   </mat-card>
 </div>

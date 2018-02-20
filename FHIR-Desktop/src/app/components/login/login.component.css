@@ -7,6 +7,9 @@
 .login-panel h2,h4{
   margin: 0;
 }
+.login-panel h2{
+  text-transform: capitalize;
+}
 .login-form{
   width: 100%;
   margin: 30px 0; 
@@ -16,4 +19,8 @@
 }
 .login-form button{
   float: right;
+}
+.login-form mat-checkbox{
+  display: inline-block;
+  margin: 16px 0;
 }

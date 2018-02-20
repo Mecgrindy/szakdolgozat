@@ -3,13 +3,18 @@
     <h2>{{ 'sign_in' | translate }}</h2>
     <h4>with your Account</h4>
     <div class="login-form">
-      <mat-form-field>
-        <input matInput placeholder="Email">
-      </mat-form-field>
-      <mat-form-field>
-        <input type="password" matInput placeholder="Password">
-      </mat-form-field>
-      <button mat-raised-button color="primary">Login</button>
+      <form [formGroup]="logForm" (ngSubmit)="onSubmit()">
+        <mat-form-field>
+          <input matInput placeholder="Email" formControlName="email" required>
+          <mat-error *ngIf="logForm.controls.email.invalid">{{getErrorMessage(logForm.controls.email)}}</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input type="password" matInput placeholder="Password" formControlName="password" required>
+          <mat-error *ngIf="logForm.controls.password.invalid">{{getErrorMessage(logForm.controls.password)}}</mat-error>
+        </mat-form-field>
+        <mat-checkbox>Stay logged in</mat-checkbox><br>
+        <button mat-raised-button color="primary" type="submit" value="submit" [disabled]="!logForm.valid">Login</button>
+      </form>
     </div>
   </mat-card>
 </div>

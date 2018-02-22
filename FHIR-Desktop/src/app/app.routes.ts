@@ -5,6 +5,7 @@ import { RegistrationComponent } from './components/registration/registration.co
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { AddComponent } from './components/add/add.component';
 import { CoverComponent } from './components/cover/cover.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 export const appRoutes: Routes = [
   { path: '', component: CoverComponent },
@@ -12,6 +13,7 @@ export const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'registration', component: RegistrationComponent },
   { path: 'add', component: AddComponent },
+  { path: 'profile', component: ProfileComponent },
 
   { path: '', redirectTo: '', pathMatch: 'full' },
   { path: '**', component: NotFoundComponent },

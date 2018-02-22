@@ -37,9 +37,9 @@ import {
   MatTooltipModule,
   MatStepperModule,
 } from '@angular/material';
-import {CdkTableModule} from '@angular/cdk/table';
+import { CdkTableModule } from '@angular/cdk/table';
 import { AppComponent } from './app.component';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './components/login/login.component';
 import { RouterModule } from '@angular/router';
 import { appRoutes } from './app.routes';
@@ -49,6 +49,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { HomeComponent } from './components/home/home.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AddComponent } from './components/add/add.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 @NgModule({
   exports: [
@@ -86,11 +87,12 @@ import { AddComponent } from './components/add/add.component';
     MatTooltipModule,
   ],
 })
-export class MyMaterialModule {}
+export class MyMaterialModule { }
 
 @NgModule({
   declarations: [
-    AppComponent, CoverComponent , HomeComponent, LoginComponent, RegistrationComponent, NotFoundComponent, AddComponent, TranslatePipe
+    AppComponent, CoverComponent, ProfileComponent, HomeComponent, LoginComponent, RegistrationComponent,
+    NotFoundComponent, AddComponent, TranslatePipe
   ],
   imports: [
     BrowserModule, BrowserAnimationsModule, MyMaterialModule, ReactiveFormsModule, FormsModule,
@@ -98,7 +100,7 @@ export class MyMaterialModule {}
       appRoutes,
     ),
   ],
-  providers: [TRANSLATION_PROVIDERS, TranslateService ],
+  providers: [TRANSLATION_PROVIDERS, TranslateService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

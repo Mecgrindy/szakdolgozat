@@ -1,0 +1,54 @@
+{
+  "name": "person",
+  "plural": "persons",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "identifier": {
+      "type": "string"
+    },
+    "name": {
+      "type": [
+        "string"
+      ]
+    },
+    "telecom": {
+      "type": [
+        "string"
+      ]
+    },
+    "gender": {
+      "type": "string"
+    },
+    "birthdate": {
+      "type": "date"
+    },
+    "address": {
+      "type": [
+        "string"
+      ]
+    },
+    "photo": {
+      "type": "string"
+    },
+    "managingorganization": {
+      "type": "string"
+    },
+    "active": {
+      "type": "boolean",
+      "default": false
+    },
+    "link": {
+      "type": [
+        "string"
+      ]
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

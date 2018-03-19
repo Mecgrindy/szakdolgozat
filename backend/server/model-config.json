@@ -36,63 +36,7 @@
     "public": false
   },
   "person": {
-    "dataSource": "db",
-    "public": true
-  },
-  "personLink": {
-    "dataSource": "db",
-    "public": true
-  },
-  "patient": {
-    "dataSource": "db",
-    "public": true
-  },
-  "patientAnimal": {
-    "dataSource": "db",
-    "public": true
-  },
-  "patientLink": {
-    "dataSource": "db",
-    "public": true
-  },
-  "communication": {
-    "dataSource": "db",
-    "public": true
-  },
-  "contact": {
-    "dataSource": "db",
-    "public": true
-  },
-  "Organization": {
-    "dataSource": "db",
-    "public": true
-  },
-  "organization": {
-    "dataSource": "db",
-    "public": true
-  },
-  "orgContact": {
-    "dataSource": "db",
-    "public": true
-  },
-  "group": {
-    "dataSource": "db",
-    "public": true
-  },
-  "member": {
-    "dataSource": "db",
-    "public": true
-  },
-  "characteristic": {
-    "dataSource": "db",
-    "public": false
-  },
-  "careTeam": {
-    "dataSource": "db",
-    "public": false
-  },
-  "participant": {
-    "dataSource": "db",
+    "dataSource": "fhir-cassandra",
     "public": true
   }
 }

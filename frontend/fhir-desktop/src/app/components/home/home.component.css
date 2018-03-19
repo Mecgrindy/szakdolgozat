@@ -1,0 +1,49 @@
+.toolbar-spacer {
+  flex: 1 1 auto;
+}
+.toolbar-logo{
+  font-size: 24px;
+}
+.home-toolbar{
+  position: fixed;
+  z-index: 2;
+  left: 0;
+  top: 0;
+  background-color: rgb(252, 252, 252);
+}
+
+.search-width{
+  width: 398px;
+  padding: 0 0 0 38px;
+}
+
+.home-container {
+  position: absolute;
+  top: 60px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: transparent;
+}
+
+.home-sidenav {
+  display: flex;
+  justify-content: left;
+  width: 214px;
+  background-color: rgb(31, 38, 50);
+  border: 0 solid rgba(62, 76, 100, 1);
+  border-right-width: 2px;
+}
+
+.home-sidenav mat-nav-list{
+  width: 100%;
+}
+
+.home-sidenav mat-nav-list a{
+  color: silver;
+  text-transform: capitalize;
+}
+
+.home-content{
+  padding: 16px;
+}

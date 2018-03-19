@@ -3,12 +3,12 @@
     "name": "db",
     "connector": "memory"
   },
-  "person": {
+  "fhir-cassandra": {
     "host": "localhost",
     "port": 9042,
-    "database": "fhir",
+    "database": "fhirdb",
     "password": "",
-    "name": "person",
+    "name": "fhir-cassandra",
     "user": "",
     "connectTimeout": 30000,
     "readTimeout": 30000,

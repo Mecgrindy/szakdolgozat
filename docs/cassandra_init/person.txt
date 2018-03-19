@@ -1,0 +1,13 @@
+create table person (
+  id uuid primary key,
+  identifier text,
+  name varchar,
+  telecom varchar,
+  gender text,
+  birthDate date,
+  address varchar,
+  photo varchar,
+  managingOrganization varchar,
+  active boolean,
+  link varchar
+);

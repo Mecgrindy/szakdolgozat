@@ -1,5 +1,6 @@
+import { OrganizationListComponent } from './organization/organization-list.component';
 import { PersonListComponent } from './person/person-list.component';
-import { HomeComponent } from './components/home/home.component';
+import { HomeComponent } from './pages/home/home.component';
 import { RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
@@ -43,8 +44,9 @@ import { CdkTableModule } from '@angular/cdk/table';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { appRoutes } from './app.routes';
 import { TRANSLATION_PROVIDERS, TranslateService } from './translate';
-import { NotFoundComponent } from './components/not-found/not-found.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { HttpClientModule } from '@angular/common/http';
+import { GroupListComponent } from './group/group-list.component';
 
 @NgModule({
   exports: [
@@ -86,7 +88,7 @@ export class MyMaterialModule { }
 
 @NgModule({
   declarations: [
-    AppComponent, NotFoundComponent, HomeComponent, PersonListComponent
+    AppComponent, NotFoundComponent, HomeComponent, PersonListComponent, GroupListComponent, OrganizationListComponent
   ],
   imports: [
     BrowserModule, BrowserAnimationsModule, MyMaterialModule, ReactiveFormsModule, FormsModule, HttpClientModule,

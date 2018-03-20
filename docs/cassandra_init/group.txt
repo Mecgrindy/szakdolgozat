@@ -1,0 +1,10 @@
+create table group (
+  id uuid primary key,
+  identifier text,
+  type text,
+  actual boolean,
+  code varchar,
+  name varchar,
+  quantity smallint,
+  active boolean
+);

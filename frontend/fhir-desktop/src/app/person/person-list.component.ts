@@ -9,10 +9,10 @@ import { Person } from './person';
   <mat-card class="person-card" *ngFor="let person of persons">
   <mat-card-header>
     <div mat-card-avatar class="person-header-image"></div>
-    <mat-card-title>Identifier
+    <mat-card-title>{{person.identifier}}
     </mat-card-title>
     <mat-card-subtitle>
-      <b>{{person.name[0]}}</b> (Male)</mat-card-subtitle>
+      <b>{{person.name[0]}}</b> ({{person.gender}})</mat-card-subtitle>
     <span class="toolbar-spacer"></span>
     <button mat-icon-button [matMenuTriggerFor]="personMenu">
       <mat-icon>more_vert</mat-icon>
@@ -20,7 +20,7 @@ import { Person } from './person';
   </mat-card-header>
   <mat-card-content class="person-content-pad">
     <p>
-      &nbsp; 1997-12-17
+      &nbsp; {{person.birthdate | date:'shortDate'}}
     </p>
   </mat-card-content>
   <mat-card-actions class="person-action-pad">

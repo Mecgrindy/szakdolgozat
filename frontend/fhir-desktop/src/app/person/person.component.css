@@ -3,18 +3,22 @@
   padding: 16px 16px;
   margin-bottom: 16px;
 }
+
 .person-header-image {
   background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
   background-size: cover;
 }
+
 .person-action-pad{
   padding: 0 16px;
   margin-bottom: -8px !important; 
 }
+
 .person-content-pad{
   padding-top: 8px;
   margin-bottom: 0;
 }
+
 .links-nmb-width{
   width: 20px;
 }

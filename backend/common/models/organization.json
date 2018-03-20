@@ -1,6 +1,6 @@
 {
-  "name": "person",
-  "plural": "persons",
+  "name": "organization",
+  "plural": "organizations",
   "base": "PersistedModel",
   "idInjection": true,
   "options": {
@@ -10,7 +10,17 @@
     "identifier": {
       "type": "string"
     },
+    "active": {
+      "type": "boolean",
+      "default": false
+    },
+    "type": {
+      "type": "string"
+    },
     "name": {
+      "type": "string"
+    },
+    "alias": {
       "type": [
         "string"
       ]
@@ -20,28 +30,15 @@
         "string"
       ]
     },
-    "gender": {
-      "type": "string"
-    },
-    "birthdate": {
-      "type": "date"
-    },
     "address": {
       "type": [
         "string"
       ]
     },
-    "photo": {
+    "partof": {
       "type": "string"
     },
-    "managingorganization": {
-      "type": "string"
-    },
-    "active": {
-      "type": "boolean",
-      "default": false
-    },
-    "link": {
+    "endpoint": {
       "type": [
         "string"
       ]

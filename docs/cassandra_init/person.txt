@@ -8,6 +8,5 @@ create table person (
   address varchar,
   photo varchar,
   managingOrganization varchar,
-  active boolean,
-  link varchar
+  active boolean
 );

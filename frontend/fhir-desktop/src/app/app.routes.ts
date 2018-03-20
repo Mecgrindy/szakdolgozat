@@ -1,9 +1,24 @@
+import { GroupListComponent } from './group/group-list.component';
+import { PersonListComponent } from './person/person-list.component';
 import { Routes, CanActivate } from '@angular/router';
-import { NotFoundComponent } from './components/not-found/not-found.component';
-import { HomeComponent } from './components/home/home.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { HomeComponent } from './pages/home/home.component';
+import { OrganizationListComponent } from './organization/organization-list.component';
 
 export const appRoutes: Routes = [
-  { path: 'home', component: HomeComponent },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  {
+    path: 'home', component: HomeComponent,
+    children: [
+      { path: '', redirectTo: 'person', pathMatch: 'full' },
+      { path: 'person', component: PersonListComponent },
+      { path: 'patient', component: PersonListComponent },
+      { path: 'group', component: GroupListComponent },
+      { path: 'organization', component: OrganizationListComponent },
+      { path: 'careteam', component: PersonListComponent },
+    ]
+  },
+
   { path: '**', component: NotFoundComponent },
   /*{ path: '', component: CoverComponent },
   { path: 'login', component: LoginComponent },

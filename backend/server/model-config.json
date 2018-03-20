@@ -38,5 +38,13 @@
   "person": {
     "dataSource": "fhir-cassandra",
     "public": true
+  },
+  "group": {
+    "dataSource": "fhir-cassandra",
+    "public": true
+  },
+  "organization": {
+    "dataSource": "fhir-cassandra",
+    "public": true
   }
 }

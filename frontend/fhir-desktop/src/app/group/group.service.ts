@@ -1,13 +1,13 @@
-import { Person } from './person';
+import { Group } from './group';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { config } from '../app.config';
 
 @Injectable()
-export class PersonService {
+export class GroupService {
   constructor(private http: HttpClient) { }
 
-  getPersons() {
-    return this.http.get<[Person]>(config.apiHost + 'persons');
+  getGroups() {
+    return this.http.get<[Group]>(config.apiHost + 'groups');
   }
 }

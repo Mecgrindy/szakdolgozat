@@ -59,35 +59,15 @@
 <mat-sidenav-container class="home-container">
   <mat-sidenav #sidenav mode="side" opened="true" class="home-sidenav" [fixedInViewport]="true" [fixedTopGap]="60" [fixedBottomGap]="0">
     <mat-nav-list>
-      <mat-list-item>
-        <a matLine routerLink=".">
-          person
-        </a>
-      </mat-list-item>
-      <mat-list-item>
-        <a matLine routerLink=".">
-          patient
-        </a>
-      </mat-list-item>
-      <mat-list-item>
-        <a matLine routerLink=".">
-          group
-        </a>
-      </mat-list-item>
-      <mat-list-item>
-        <a matLine routerLink=".">
-          organization
-        </a>
-      </mat-list-item>
-      <mat-list-item>
-        <a matLine routerLink=".">
-          care team
+      <mat-list-item *ngFor="let routeName of routeNames" routerLink="{{routeName}}" routerLinkActive="active-item">
+        <a matLine>
+          {{routeName}}
         </a>
       </mat-list-item>
     </mat-nav-list>
   </mat-sidenav>
 
   <mat-sidenav-content class="home-content">
-    <app-person-list></app-person-list>
+    <router-outlet></router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>

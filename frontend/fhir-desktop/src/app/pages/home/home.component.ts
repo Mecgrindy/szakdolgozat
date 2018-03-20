@@ -15,7 +15,7 @@ export class State {
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
-
+  routeNames: string[];
   stateCtrl: FormControl;
   filteredStates: Observable<any[]>;
 
@@ -47,11 +47,12 @@ export class HomeComponent {
   ];
 
   constructor() {
+    this.routeNames = ['person', 'patient', 'group', 'organization', 'careteam'];
     this.stateCtrl = new FormControl();
     this.filteredStates = this.stateCtrl.valueChanges
       .pipe(
-      startWith(''),
-      map(state => state ? this.filterStates(state) : this.states.slice())
+        startWith(''),
+        map(state => state ? this.filterStates(state) : this.states.slice())
       );
   }
 

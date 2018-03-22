@@ -11,8 +11,9 @@
 }
 
 .search-width{
-  width: 398px;
+  width: 498px;
   padding: 0 0 0 38px;
+  margin-left: 48px;
 }
 
 .home-container {
@@ -33,7 +34,14 @@
   border-right-width: 2px;
 }
 
-.home-sidenav mat-nav-list{
+.select-sidenav {
+  display: flex;
+  justify-content: center;
+  width: 30%;
+  overflow-y: scroll;
+}
+
+.home-sidenav mat-nav-list, .select-sidenav mat-list{
   width: 100%;
 }
 
@@ -54,4 +62,13 @@
 
 .active-item a, mat-list-item.active-item:hover a, mat-list-item.active-item:focus a{
   color:grey !important;
+}
+
+.menu-button{
+  min-width: initial;
+  padding: 0 8px 0 8px;
+}
+
+.close-btn{
+  margin-right: 8px;
 }

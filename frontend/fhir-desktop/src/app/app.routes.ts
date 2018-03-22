@@ -1,12 +1,16 @@
-import { GroupListComponent } from './group/group-list.component';
-import { PersonListComponent } from './person/person-list.component';
+import { GroupListComponent } from './entities/group/group-list.component';
+import { PersonListComponent } from './entities/person/person-list.component';
 import { Routes, CanActivate } from '@angular/router';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { HomeComponent } from './pages/home/home.component';
-import { OrganizationListComponent } from './organization/organization-list.component';
+import { OrganizationListComponent } from './entities/organization/organization-list.component';
+import { PersonDetailComponent } from './entities/person/person-detail.component';
+import { LoginComponent } from './pages/login/login.component';
+import { AddComponent } from './pages/add/add.component';
 
 export const appRoutes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: 'login', component: LoginComponent },
   {
     path: 'home', component: HomeComponent,
     children: [
@@ -18,6 +22,7 @@ export const appRoutes: Routes = [
       { path: 'careteam', component: PersonListComponent },
     ]
   },
+  { path: 'add', component: AddComponent },
 
   { path: '**', component: NotFoundComponent },
   /*{ path: '', component: CoverComponent },

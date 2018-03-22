@@ -22,7 +22,7 @@ export class TranslateService {
   }
 
   // inject our translations
-  constructor( @Inject(TRANSLATIONS) private _translations: any) {
+  constructor(@Inject(TRANSLATIONS) private _translations: any) {
   }
 
   public use(lang: string): void {

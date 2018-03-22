@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { SidenavService } from './../../services/sidenav.service';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
 
 import { startWith } from 'rxjs/operators/startWith';
 import { map } from 'rxjs/operators/map';
+import { Person } from '../../entities/person/person';
 
 export class State {
   constructor(public name: string, public population: string, public flag: string) { }
@@ -12,12 +14,14 @@ export class State {
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
+  providers: [SidenavService],
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent {
+export class HomeComponent implements AfterViewInit {
   routeNames: string[];
   stateCtrl: FormControl;
   filteredStates: Observable<any[]>;
+  @ViewChild('detailnav') public mainNav;
 
   states: State[] = [
     {
@@ -46,7 +50,7 @@ export class HomeComponent {
     }
   ];
 
-  constructor() {
+  constructor(public sidenavService: SidenavService) {
     this.routeNames = ['person', 'patient', 'group', 'organization', 'careteam'];
     this.stateCtrl = new FormControl();
     this.filteredStates = this.stateCtrl.valueChanges
@@ -56,9 +60,18 @@ export class HomeComponent {
       );
   }
 
+  ngAfterViewInit() {
+    this.sidenavService.sidenav = this.mainNav;
+  }
+
   filterStates(name: string) {
     return this.states.filter(state =>
       state.name.toLowerCase().indexOf(name.toLowerCase()) === 0);
+  }
+
+  closeNav() {
+    this.sidenavService.sidenav.close();
+    this.sidenavService.prevId = '';
   }
 
 }

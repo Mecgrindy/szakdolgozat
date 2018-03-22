@@ -1,5 +1,5 @@
 <mat-toolbar class="home-toolbar mat-elevation-z1">
-  <button mat-button (click)="sidenav.toggle()">
+  <button mat-button (click)="sidenav.toggle()" class="menu-button">
     <mat-icon class="toolbar-icon">menu</mat-icon>
   </button>
   <a class="toolbar-logo" mat-button routerLink="/">FHIR</a>
@@ -18,7 +18,7 @@
     </mat-form-field>
   </form>
   <span class="toolbar-spacer"></span>
-  <button mat-button>
+  <button mat-button routerLink="/add">
     <mat-icon class="toolbar-icon">person_add</mat-icon>
   </button>
   <button mat-button [matMenuTriggerFor]="userProfile">
@@ -66,7 +66,92 @@
       </mat-list-item>
     </mat-nav-list>
   </mat-sidenav>
-
+  <mat-sidenav #detailnav position="end" mode="side" [fixedInViewport]="true" [fixedTopGap]="60" [fixedBottomGap]="0" opened="false"
+    class="select-sidenav mat-elevation-z2">
+    <mat-list *ngIf="sidenavService.data">
+      <mat-list-item>
+        <img matListAvatar src="https://material.angular.io/assets/img/examples/shiba1.jpg" alt="kutya">
+        <h3 matLine>
+          <b *ngFor="let nam of sidenavService.data.name">{{nam}} </b>
+        </h3>
+        <span class="toolbar-spacer"></span>
+        <button mat-icon-button (click)="closeNav()" class="close-btn">
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-tab-group>
+        <mat-tab label="Basic">
+          <mat-list>
+            <mat-list-item>
+              Identifier: {{sidenavService.data.identifier}}
+            </mat-list-item>
+            <mat-list-item>
+              Name:&nbsp;
+              <span *ngFor="let nam of sidenavService.data.name">{{nam}}&nbsp;</span>
+            </mat-list-item>
+            <mat-list-item>
+              Gender: {{sidenavService.data.gender}}
+            </mat-list-item>
+            <mat-list-item>
+              Birth Date: {{sidenavService.data.birthdate | date: 'shortDate'}}
+            </mat-list-item>
+            <mat-list-item class="org-center">
+              <button mat-button>
+                {{sidenavService.data.managingorganization}}
+                <mat-icon class="toolbar-icon">launch</mat-icon>
+              </button>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list>
+              <h3 matSubheader>Telecom</h3>
+              <mat-list-item *ngFor="let tel of sidenavService.data.telecom">
+                {{tel}}
+              </mat-list-item>
+              <mat-divider></mat-divider>
+              <h3 matSubheader>Address</h3>
+              <mat-list-item *ngFor="let add of sidenavService.data.address">
+                {{add}}
+              </mat-list-item>
+            </mat-list>
+          </mat-list>
+        </mat-tab>
+        <mat-tab label="Links">
+          <mat-list>
+            <mat-list-item>
+              <img matListAvatar src="https://material.angular.io/assets/img/examples/shiba1.jpg" alt="kutya">
+              <h3 matLine> identifier </h3>
+              <p matLine>
+                <span>
+                  <b>Gyula</b> (Male) </span>
+                <span> -- 17/12/2018 </span>
+              </p>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item>
+              <img matListAvatar src="https://material.angular.io/assets/img/examples/shiba1.jpg" alt="kutya">
+              <h3 matLine> identifier </h3>
+              <p matLine>
+                <span>
+                  <b>Gyula</b> (Male) </span>
+                <span> -- 17/12/2018 </span>
+              </p>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item>
+              <img matListAvatar src="https://material.angular.io/assets/img/examples/shiba1.jpg" alt="kutya">
+              <h3 matLine> identifier </h3>
+              <p matLine>
+                <span>
+                  <b>Gyula</b> (Male) </span>
+                <span> -- 17/12/2018 </span>
+              </p>
+            </mat-list-item>
+          </mat-list>
+        </mat-tab>
+      </mat-tab-group>
+    </mat-list>
+  </mat-sidenav>
   <mat-sidenav-content class="home-content">
     <router-outlet></router-outlet>
   </mat-sidenav-content>

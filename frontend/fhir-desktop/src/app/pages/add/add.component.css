@@ -1,0 +1,12 @@
+.add-panel{
+  width: 80vw;
+  min-width: 320px;
+  min-height: 320px;
+  padding: 0;
+}
+.radio-margin{
+  margin: 16px 5px;
+}
+.back-margin{
+  margin-left: 16px;
+}

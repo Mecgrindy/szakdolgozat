@@ -1,7 +1,7 @@
 import { Organization } from './organization';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { config } from '../app.config';
+import { config } from '../../app.config';
 
 @Injectable()
 export class OrganizationService {

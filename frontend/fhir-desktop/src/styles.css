@@ -35,3 +35,15 @@ home-toolbar .mat-form-field-wrapper {
 .active-item .mat-list-item-content, mat-list-item.active-item .mat-list-item-content:hover, mat-list-item.active-item .mat-list-item-content:focus{
   padding-left: 12px !important; 
 }
+
+.person-list .mat-list-item-content{
+  padding: 0 !important;
+}
+
+app-delete-dialog{
+  text-align: center;
+}
+
+.org-center .mat-list-item-content{
+  justify-content: center;
+}

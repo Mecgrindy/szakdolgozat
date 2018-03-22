@@ -1,0 +1,29 @@
+<mat-list class="person-list">
+  <mat-list-item *ngFor="let person of persons" (click)="toggleDetail(person.id)">
+    <img matListAvatar src="https://material.angular.io/assets/img/examples/shiba1.jpg" alt="kutya">
+    <h3 matLine> {{person.identifier}} </h3>
+    <p matLine>
+      <span>
+        <b>{{person.name[0]}}</b> ({{person.gender}}) </span>
+      <span> -- {{person.birthdate | date: 'shortDate'}} </span>
+    </p>
+    <span class="toolbar-spacer"></span>
+    <button mat-button color="primary" appStopClickProp>ORG</button>
+    <button mat-button color="primary" appStopClickProp>LINKS 4</button>
+    <button mat-icon-button [matMenuTriggerFor]="personMenu" appStopClickProp>
+      <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #personMenu="matMenu">
+      <ng-template matMenuContent>
+        <button mat-menu-item>
+          <mat-icon>edit</mat-icon>
+          <span>Edit</span>
+        </button>
+        <button mat-menu-item (click)="openDialog(person.name, person.id)">
+          <mat-icon>delete</mat-icon>
+          <span>Delete</span>
+        </button>
+      </ng-template>
+    </mat-menu>
+  </mat-list-item>
+</mat-list>

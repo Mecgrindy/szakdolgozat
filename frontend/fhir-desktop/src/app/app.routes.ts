@@ -1,5 +1,8 @@
+import { RolesComponent } from './pages/roles/roles.component';
+import { AppComponent } from './app.component';
+import { ManagementComponent } from './pages/management/management.component';
 import { GroupListComponent } from './entities/group/group-list.component';
-import { PersonListComponent } from './entities/person/person-list.component';
+import { PersonTableComponent } from './entities/person/person-table.component';
 import { Routes, CanActivate } from '@angular/router';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { HomeComponent } from './pages/home/home.component';
@@ -10,18 +13,21 @@ import { AddComponent } from './pages/add/add.component';
 
 export const appRoutes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: 'home', component: HomeComponent },
+  { path: 'roles', component: RolesComponent },
+  { path: 'management', component: ManagementComponent },
   { path: 'login', component: LoginComponent },
-  {
+  /*{
     path: 'home', component: HomeComponent,
     children: [
       { path: '', redirectTo: 'person', pathMatch: 'full' },
-      { path: 'person', component: PersonListComponent },
-      { path: 'patient', component: PersonListComponent },
+      { path: 'person', component: PersonTableComponent },
+      { path: 'patient', component: PersonTableComponent },
       { path: 'group', component: GroupListComponent },
       { path: 'organization', component: OrganizationListComponent },
-      { path: 'careteam', component: PersonListComponent },
+      { path: 'careteam', component: PersonTableComponent },
     ]
-  },
+  },*/
   { path: 'add', component: AddComponent },
 
   { path: '**', component: NotFoundComponent },

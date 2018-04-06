@@ -6,8 +6,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./add.component.css']
 })
 export class AddComponent implements OnInit {
+  routeNames: string[];
+  genders: string[];
 
-  constructor() { }
+  constructor() {
+    this.routeNames = ['person', 'patient', 'group', 'organization', 'careteam'];
+    this.genders = ['male', 'female', 'other', 'unknown'];
+  }
 
   ngOnInit() {
   }

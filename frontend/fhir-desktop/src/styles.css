@@ -3,7 +3,7 @@
 
 body{
   margin: 0 auto;
-  background-color: rgb(240, 240, 240);
+  background-color: rgb(250, 250, 250);
 }
 
 .centering{
@@ -12,10 +12,6 @@ body{
   justify-content: center;
   align-items: center;
   height: 100vh;
-}
-
-home-toolbar .mat-form-field-wrapper {
-  padding-bottom: 0.85em !important;
 }
 
 .home-toolbar .mat-form-field-suffix .mat-icon{
@@ -28,22 +24,26 @@ home-toolbar .mat-form-field-wrapper {
   height: 80px !important;
 }
 
-.toolbar-spacer {
+.spacer {
   flex: 1 1 auto;
 }
 
-.active-item .mat-list-item-content, mat-list-item.active-item .mat-list-item-content:hover, mat-list-item.active-item .mat-list-item-content:focus{
-  padding-left: 12px !important; 
+.home-sidenav .mat-list-item-content{
+  padding-left: 20px !important;
 }
 
 .person-list .mat-list-item-content{
   padding: 0 !important;
 }
 
-app-delete-dialog{
+[mat-dialog-title], mat-dialog-content p{
   text-align: center;
 }
 
 .org-center .mat-list-item-content{
   justify-content: center;
+}
+
+.pointer{
+  cursor: pointer;
 }

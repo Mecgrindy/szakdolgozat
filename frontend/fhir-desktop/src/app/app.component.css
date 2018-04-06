@@ -1,0 +1,45 @@
+.toolbar-logo{
+  font-size: 24px;
+}
+
+.toolbar-icon{
+  margin: 0 8px;
+}
+
+.home-toolbar{
+  position: fixed;
+  z-index: 2;
+  left: 0;
+  top: 0;
+  height: 56px;
+  background-color: white;
+}
+
+.home-container {
+  position: absolute;
+  top: 56px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: transparent;
+}
+
+.home-sidenav {
+  display: flex;
+  width: 242px;
+  background-color: rgb(245, 245, 245);
+  border: 0 solid rgba(240, 240, 240, 1);
+  border-right-width: 2px;
+}
+
+.home-sidenav mat-nav-list{
+  width: 100%;
+}
+
+.active-item mat-icon{
+  color: darkblue;
+}
+
+.active-item a{
+  font-weight: bold;
+}

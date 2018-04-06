@@ -8,17 +8,13 @@
   },
   "properties": {
     "identifier": {
-      "type": "string"
+      "type": "object"
     },
     "name": {
-      "type": [
-        "string"
-      ]
+      "type": "object"
     },
     "telecom": {
-      "type": [
-        "string"
-      ]
+      "type": "object"
     },
     "gender": {
       "type": "string"
@@ -39,7 +35,10 @@
     },
     "active": {
       "type": "boolean",
-      "default": false
+      "default": true
+    },
+    "insertdate": {
+      "type": "date"
     }
   },
   "validations": [],

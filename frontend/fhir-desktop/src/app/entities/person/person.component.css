@@ -1,29 +1,80 @@
-.person-card {
-  max-width: 366px;
-  padding: 16px 16px;
-  margin-bottom: 16px;
+.persons-container {
+  display: flex;
+  flex-direction: column;
+  max-height: 75%;
+  min-width: 300px;
+  position: relative;
 }
 
-.person-list{
-  max-width: 508px;
-  margin-bottom: 16px;
+.persons-header {
+  min-height: 64px;
+  display: flex;
+  align-items: center;
+  padding: 8px 24px 0;
+  font-size: 20px;
 }
 
-.person-header-image {
-  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
-  background-size: cover;
+.persons-table {
+  overflow: auto;
+  min-height: 300px;
 }
 
-.person-action-pad{
-  padding: 0 16px;
-  margin-bottom: -8px !important; 
+.persons-loading-shade {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 56px;
+  right: 0;
+  background: rgba(0, 0, 0, 0.15);
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.person-content-pad{
-  padding-top: 8px;
-  margin-bottom: 0;
+.persons-error {
+  color: #980000;
+  max-width: 360px;
+  text-align: center;
 }
 
-.links-nmb-width{
-  width: 20px;
+.mat-column-number,
+.mat-column-state {
+  max-width: 64px;
+}
+
+.mat-column-created {
+  max-width: 124px;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+.mat-column-select {
+  overflow: visible;
+}
+
+.mat-header-row, .mat-row{
+  padding-right: 0;
+}
+
+.icon-cell{
+  text-align: center;
+  flex: 0.4;
+}
+
+.filter-select{
+  width: auto;
+}
+
+.btn-margin{
+  margin: 0 0 0 16px;
+}
+
+.operation-panel{
+  background-color: transparent;
+  padding-bottom: 0;
+  padding-top: 0;
 }

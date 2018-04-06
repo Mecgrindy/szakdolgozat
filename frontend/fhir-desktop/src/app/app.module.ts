@@ -1,8 +1,9 @@
+import { RolesComponent } from './pages/roles/roles.component';
 import { ClickStopPropagationDirective } from './directives/click-stop-propagation.directive';
 import { PersonDetailComponent } from './entities/person/person-detail.component';
 import { DeleteDialogComponent } from './modals/modals';
 import { OrganizationListComponent } from './entities/organization/organization-list.component';
-import { PersonListComponent } from './entities/person/person-list.component';
+import { PersonTableComponent } from './entities/person/person-table.component';
 import { HomeComponent } from './pages/home/home.component';
 import { RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -53,6 +54,7 @@ import { GroupListComponent } from './entities/group/group-list.component';
 import { LoginComponent } from './pages/login/login.component';
 import { AddComponent } from './pages/add/add.component';
 import { TranslatePipe } from './translate/translate.pipe';
+import { ManagementComponent } from './pages/management/management.component';
 
 @NgModule({
   exports: [
@@ -94,9 +96,9 @@ export class MyMaterialModule { }
 
 @NgModule({
   declarations: [
-    AppComponent, NotFoundComponent, HomeComponent, PersonListComponent, GroupListComponent, OrganizationListComponent,
+    AppComponent, NotFoundComponent, HomeComponent, PersonTableComponent, GroupListComponent, OrganizationListComponent,
     DeleteDialogComponent, PersonDetailComponent, ClickStopPropagationDirective,
-    LoginComponent, AddComponent, TranslatePipe
+    LoginComponent, AddComponent, TranslatePipe, ManagementComponent, RolesComponent
   ],
   imports: [
     BrowserModule, BrowserAnimationsModule, MyMaterialModule, ReactiveFormsModule, FormsModule, HttpClientModule,

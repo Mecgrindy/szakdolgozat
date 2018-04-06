@@ -1,0 +1,67 @@
+[{
+  "identifier": {"taj":"156348697"},
+  "name": {"lastname":"Gaga","surname":"Lady"},
+  "telecom": {"email":"gaga@gmail.com","phone":"06148697"},
+  "gender": "Female",
+  "birthdate": "1900-04-04T17:35:53.977Z",
+  "address": ["Gaga utca Lady 12, Szeged"],
+  "photo": "string",
+  "managingorganization": "string",
+  "active": true
+},
+{
+  "identifier": {"taj":"648761234"},
+  "name": {"lastname":"Majka","surname":"Belhe"},
+  "telecom": {"email":"majka@gmail.com","phone":"023541534"},
+  "gender": "Male",
+  "birthdate": "1985-04-04T17:35:53.977Z",
+  "address": ["Majka utca 12, Szeged"],
+  "photo": "string",
+  "managingorganization": "string",
+  "active": true
+},
+{
+  "identifier": {"taj":"45645654"},
+  "name": {"lastname":"Lacko","surname":"Ficko"},
+  "telecom": {"email":"lac@gmail.com","phone":"15678754"},
+  "gender": "Female",
+  "birthdate": "1995-04-04T17:35:53.977Z",
+  "address": ["Lacko utca Ficko 12, Budapest"],
+  "photo": "string",
+  "managingorganization": "string",
+  "active": true
+},
+{
+  "identifier": {"taj":"153184874"},
+  "name": {"lastname":"Gyula","surname":"Bull"},
+  "telecom": {"email":"gzu@gmail.com","phone":"1023346548"},
+  "gender": "Male",
+  "birthdate": "1993-04-04T17:35:53.977Z",
+  "address": ["Juhasz utca 12, Szeged"],
+  "photo": "string",
+  "managingorganization": "string",
+  "active": true
+},
+{
+  "identifier": {},
+  "name": {"lastname":"Mari","surname":"Vagyok"},
+  "telecom": {"email":"mari@gmail.com","phone":"6544877"},
+  "gender": "Other",
+  "birthdate": "2001-04-04T17:35:53.977Z",
+  "address": ["Mari utca Ficko 12, Budapest"],
+  "photo": "string",
+  "managingorganization": "string",
+  "active": true
+},
+{
+  "identifier": {"taj":"15348487"},
+  "name": {"lastname":"Jolan","surname":"Krako"},
+  "telecom": {"email":"rkak@gmail.com","phone":"023224777"},
+  "gender": "Female",
+  "birthdate": "1965-04-04T17:35:53.977Z",
+  "address": ["Kurumbu utca 23, Szeged"],
+  "photo": "string",
+  "managingorganization": "string",
+  "active": true
+}
+]

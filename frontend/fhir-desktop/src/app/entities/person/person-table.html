@@ -1,0 +1,111 @@
+<mat-card class="mat-elevation-z0 operation-panel">
+  <mat-form-field class="filter-select">
+    <mat-select value="person">
+      <mat-option value="person">Person</mat-option>
+      <mat-option value="group">Group</mat-option>
+      <mat-option value="organization">Organization</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <a mat-raised-button routerLink="add" color="primary" class="btn-margin">New</a>
+  <a mat-button routerLink=".">Import</a>
+</mat-card>
+
+<div class="persons-header">
+  <mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+  </mat-form-field>
+</div>
+
+<div class="persons-container mat-elevation-z3">
+  <div class="persons-loading-shade" *ngIf="isLoadingResults || isError">
+    <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+    <div class="persons-error" *ngIf="isError">
+      Ooppsie! Something went wrong. Try again later.
+    </div>
+  </div>
+
+  <mat-table [dataSource]="dataSource" matSort class="persons-table">
+
+    <ng-container matColumnDef="identifier">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Taj </mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <span *ngIf="row.identifier!={}">{{row.identifier.taj}} </span>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <span *ngIf="row.name!={}">{{row.name.lastname}} {{ row.name.surname}} </span>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="birthDate">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Birthdate </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.birthdate | date:'shortDate'}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="gender">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Gender </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.gender}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="active">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Active </mat-header-cell>
+      <mat-cell *matCellDef="let row" [style.color]="row.active?'green':'red'"> {{row.active}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="view">
+      <mat-header-cell *matHeaderCellDef class="icon-cell">
+        <mat-icon>visibility</mat-icon>
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row" class="icon-cell" (click)="toggleDetail(row.id)">
+        <mat-icon [style.color]="'dodgerblue'" class="pointer">visibility</mat-icon>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="edit">
+      <mat-header-cell *matHeaderCellDef class="icon-cell">
+        <mat-icon>edit</mat-icon>
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row" [style.color]="'orange'" class="icon-cell">
+        <mat-icon class="pointer">edit</mat-icon>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="delete">
+      <mat-header-cell *matHeaderCellDef class="icon-cell">
+        <mat-icon>close</mat-icon>
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row" [style.color]="'red'" class="icon-cell" (click)="openDialog(row.name, row.id)">
+        <mat-icon class="pointer">close</mat-icon>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="select">
+      <mat-header-cell *matHeaderCellDef>
+        <mat-checkbox (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()" [indeterminate]="selection.hasValue() && !isAllSelected()">
+        </mat-checkbox>
+        <button *ngIf="selection.selected.length>0" mat-button [matMenuTriggerFor]="personAction">
+          more
+          <mat-icon>keyboard_arrow_down</mat-icon>
+        </button>
+        <mat-menu #personAction="matMenu">
+          <button mat-menu-item>Group</button>
+          <button mat-menu-item>Role</button>
+          <button mat-menu-item>Delete</button>
+        </mat-menu>
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null" [checked]="selection.isSelected(row)">
+        </mat-checkbox>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;">
+    </mat-row>
+  </mat-table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+</div>

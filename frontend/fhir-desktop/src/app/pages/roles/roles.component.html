@@ -1,0 +1,101 @@
+<mat-card class="mat-elevation-z0" style="background-color:transparent;">
+  <mat-form-field>
+    <mat-select value="admin">
+      <mat-option value="admin">Admin</mat-option>
+      <mat-option value="role1">Role1</mat-option>
+      <mat-option value="role2">Role2</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <a mat-raised-button color="primary" style="margin-left:8px;">New</a>
+  <a mat-button>Import</a>
+  <br>
+  <mat-accordion>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Service 1
+        </mat-panel-title>
+        <mat-panel-description>
+          Permission level: 6
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <ng-template matExpansionPanelContent>
+        <mat-form-field>
+          <input matInput placeholder="Permission level" type="number" value="6">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput [matDatepicker]="picker1" placeholder="Until">
+          <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+          <mat-datepicker touchUi="true" #picker1></mat-datepicker>
+        </mat-form-field>
+        <button mat-raised-button color="warn" style="margin-left:8px;">Delete</button>
+        <mat-list role="list">
+          <mat-divider style="position: relative;"></mat-divider>
+          <mat-list-item role="listitem">Dentistry
+            <span style="margin-left:30px;">privilege level: 1 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <mat-slider [max]="7" [min]="1" thumbLabel>
+              </mat-slider>
+            </span>
+          </mat-list-item>
+          <mat-list-item role="listitem">X-ray
+            <span style="margin-left:30px;">privilege level: 1 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <mat-slider [max]="7" [min]="1" thumbLabel>
+              </mat-slider>
+            </span>
+          </mat-list-item>
+          <mat-list-item role="listitem">Cardiology
+            <span style="margin-left:30px;">privilege level: 1 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <mat-slider [max]="7" [min]="1" thumbLabel>
+              </mat-slider>
+            </span>
+          </mat-list-item>
+        </mat-list>
+      </ng-template>
+    </mat-expansion-panel>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Service 2
+        </mat-panel-title>
+        <mat-panel-description>
+          Permission level: 7
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <ng-template matExpansionPanelContent></ng-template>
+    </mat-expansion-panel>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Service 3
+        </mat-panel-title>
+        <mat-panel-description>
+          Permission level: 1
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <ng-template matExpansionPanelContent></ng-template>
+    </mat-expansion-panel>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Service 4
+        </mat-panel-title>
+        <mat-panel-description>
+          Permission level: 3
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <ng-template matExpansionPanelContent></ng-template>
+    </mat-expansion-panel>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Service 5
+        </mat-panel-title>
+        <mat-panel-description>
+          Permission level: 5
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <ng-template matExpansionPanelContent></ng-template>
+    </mat-expansion-panel>
+  </mat-accordion>
+  <a mat-raised-button style="margin-top:16px;">Add service</a>
+</mat-card>

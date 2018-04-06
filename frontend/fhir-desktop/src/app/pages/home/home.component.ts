@@ -1,77 +1,10 @@
-import { SidenavService } from './../../services/sidenav.service';
-import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
-import { Observable } from 'rxjs/Observable';
-
-import { startWith } from 'rxjs/operators/startWith';
-import { map } from 'rxjs/operators/map';
-import { Person } from '../../entities/person/person';
-
-export class State {
-  constructor(public name: string, public population: string, public flag: string) { }
-}
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  providers: [SidenavService],
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements AfterViewInit {
-  routeNames: string[];
-  stateCtrl: FormControl;
-  filteredStates: Observable<any[]>;
-  @ViewChild('detailnav') public mainNav;
-
-  states: State[] = [
-    {
-      name: 'Aladin',
-      population: '2.978M',
-      // https://commons.wikimedia.org/wiki/File:Flag_of_Arkansas.svg
-      flag: 'https://upload.wikimedia.org/wikipedia/commons/9/9d/Flag_of_Arkansas.svg'
-    },
-    {
-      name: 'Conor',
-      population: '39.14M',
-      // https://commons.wikimedia.org/wiki/File:Flag_of_California.svg
-      flag: 'https://upload.wikimedia.org/wikipedia/commons/0/01/Flag_of_California.svg'
-    },
-    {
-      name: 'Marika',
-      population: '20.27M',
-      // https://commons.wikimedia.org/wiki/File:Flag_of_Florida.svg
-      flag: 'https://upload.wikimedia.org/wikipedia/commons/f/f7/Flag_of_Florida.svg'
-    },
-    {
-      name: 'Gyula',
-      population: '27.47M',
-      // https://commons.wikimedia.org/wiki/File:Flag_of_Texas.svg
-      flag: 'https://upload.wikimedia.org/wikipedia/commons/f/f7/Flag_of_Texas.svg'
-    }
-  ];
-
-  constructor(public sidenavService: SidenavService) {
-    this.routeNames = ['person', 'patient', 'group', 'organization', 'careteam'];
-    this.stateCtrl = new FormControl();
-    this.filteredStates = this.stateCtrl.valueChanges
-      .pipe(
-        startWith(''),
-        map(state => state ? this.filterStates(state) : this.states.slice())
-      );
-  }
-
-  ngAfterViewInit() {
-    this.sidenavService.sidenav = this.mainNav;
-  }
-
-  filterStates(name: string) {
-    return this.states.filter(state =>
-      state.name.toLowerCase().indexOf(name.toLowerCase()) === 0);
-  }
-
-  closeNav() {
-    this.sidenavService.sidenav.close();
-    this.sidenavService.prevId = '';
-  }
-
+export class HomeComponent {
+  constructor() { }
 }

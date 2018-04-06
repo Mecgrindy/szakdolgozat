@@ -1,4 +1,4 @@
-export class Person {
+export interface Person {
   id: string;
   identifier: string;
   name: [string];
@@ -10,4 +10,8 @@ export class Person {
   managingOrganization: string;
   active: boolean;
   link: any;
+}
+
+export interface PersonCount {
+  count: number;
 }

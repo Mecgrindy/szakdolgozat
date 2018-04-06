@@ -1,2 +1,69 @@
-<router-outlet></router-outlet>
+<mat-toolbar class="home-toolbar mat-elevation-z2">
+  <button mat-icon-button (click)="sidenav.toggle()" class="menu-button">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <a class="toolbar-logo" mat-button routerLink="/">FHIR</a>
 
+  <span class="spacer"></span>
+  <!-- <button mat-icon-button (click)="openAddDialog()" class="toolbar-icon">
+    <mat-icon>person_add</mat-icon>
+  </button> -->
+  <button mat-icon-button class="toolbar-icon">
+    <mat-icon>notifications_none</mat-icon>
+  </button>
+  <button mat-icon-button [matMenuTriggerFor]="userProfile" class="toolbar-icon">
+    <mat-icon>account_circle</mat-icon>
+  </button>
+</mat-toolbar>
+
+<mat-menu #userProfile="matMenu">
+  <button mat-menu-item>
+    <mat-icon> person </mat-icon>
+    <span>Profile</span>
+  </button>
+  <button mat-menu-item>
+    <span>Logout</span>
+  </button>
+  <mat-divider></mat-divider>
+  <button mat-menu-item>
+    <mat-icon> settings </mat-icon>
+    <span>Settings</span>
+  </button>
+  <button mat-menu-item>
+    <mat-icon> help </mat-icon>
+    <span>Help</span>
+  </button>
+  <button mat-menu-item>
+    <mat-icon> feedback </mat-icon>
+    <span>Send feedback</span>
+  </button>
+  <mat-divider></mat-divider>
+  <button mat-menu-item [matMenuTriggerFor]="languageMenu">Language: English</button>
+</mat-menu>
+
+<mat-menu #languageMenu="matMenu">
+  <button mat-menu-item>English</button>
+  <button mat-menu-item>Magyar</button>
+</mat-menu>
+
+<mat-sidenav-container class="home-container">
+  <mat-sidenav #sidenav mode="side" opened="true" class="home-sidenav" [fixedInViewport]="true" [fixedTopGap]="56" [fixedBottomGap]="0">
+    <mat-nav-list>
+      <mat-list-item routerLink="home" routerLinkActive="active-item">
+        <mat-icon matListIcon>home</mat-icon>
+        <a matLine>Home</a>
+      </mat-list-item>
+      <mat-list-item routerLink="roles" routerLinkActive="active-item">
+        <mat-icon matListIcon>vpn_key</mat-icon>
+        <a matLine>Roles</a>
+      </mat-list-item>
+      <mat-list-item routerLink="management" routerLinkActive="active-item">
+        <mat-icon matListIcon>group</mat-icon>
+        <a matLine>Management</a>
+      </mat-list-item>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

@@ -1,6 +1,6 @@
 create table person (
   id uuid primary key,
-  identifier text,
+  identifier varchar,
   name varchar,
   telecom varchar,
   gender text,
@@ -8,5 +8,6 @@ create table person (
   address varchar,
   photo varchar,
   managingOrganization varchar,
-  active boolean
+  active boolean,
+  insertdate date,
 );

@@ -1,0 +1,11 @@
+.man-content{
+  padding: 16px;
+}
+
+.select-sidenav {
+  display: flex;
+  justify-content: center;
+  width: 25%;
+  max-width: 340px;
+  overflow-y: scroll;
+}

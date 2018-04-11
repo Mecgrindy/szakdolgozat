@@ -42,10 +42,7 @@ open console or terminal:
 
  cassandra
  cqlsh
-
-create keyspace with 'fhirdb' name
-
-copy the docs/cassandra_init/person.txt and paste into cqlsh
+ source '~/docs/cassandra_init/init.cql'
 
 ### Loopback
 

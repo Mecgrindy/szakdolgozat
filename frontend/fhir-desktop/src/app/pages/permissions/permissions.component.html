@@ -1,0 +1,83 @@
+<mat-card class="mat-elevation-z0" style="background-color:transparent;">
+  <div class="perm-header">
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+    </mat-form-field>
+  </div>
+
+  <div class="perm-container mat-elevation-z1">
+
+    <mat-table [dataSource]="dataSource" matSort>
+
+      <ng-container matColumnDef="servicename">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> S name </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.servicename}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="serviceuser">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> S user </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.serviceuser}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="resource">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> R name </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.resource}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="c">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> C </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <mat-checkbox></mat-checkbox>
+        </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="r">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> R </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <mat-checkbox></mat-checkbox>
+        </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="u">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> U </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <mat-checkbox></mat-checkbox>
+        </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="d">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> D </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <mat-checkbox></mat-checkbox>
+        </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="from">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> From </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <mat-form-field>
+            <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="to">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> To </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <mat-form-field>
+            <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="requestuser">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> R user </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.requestuser}} </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;">
+      </mat-row>
+    </mat-table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+  </div>
+</mat-card>

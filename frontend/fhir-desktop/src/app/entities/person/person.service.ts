@@ -9,7 +9,6 @@ export class PersonService {
   constructor(private http: HttpClient) { }
 
   getPersons(): Observable<[Person]> {
-
     return this.http.get<[Person]>(config.apiHost + 'persons');
   }
 

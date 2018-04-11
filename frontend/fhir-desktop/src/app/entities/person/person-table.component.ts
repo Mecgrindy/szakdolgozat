@@ -1,4 +1,3 @@
-import { SidenavService } from './../../services/sidenav.service';
 import { DeleteDialogComponent } from './../../modals/modals';
 import { Component, ViewChild, OnInit } from '@angular/core';
 import { PersonService } from './person.service';
@@ -13,6 +12,7 @@ import { map } from 'rxjs/operators/map';
 import { startWith } from 'rxjs/operators/startWith';
 import { switchMap } from 'rxjs/operators/switchMap';
 import { SelectionModel } from '@angular/cdk/collections';
+import { SidenavService } from '../../components/sidenav/sidenav.service';
 
 @Component({
   selector: 'app-person-table',

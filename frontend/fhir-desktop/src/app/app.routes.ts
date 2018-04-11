@@ -1,3 +1,4 @@
+import { MainComponent } from './main/main.component';
 import { RolesComponent } from './pages/roles/roles.component';
 import { AppComponent } from './app.component';
 import { ManagementComponent } from './pages/management/management.component';
@@ -10,13 +11,20 @@ import { OrganizationListComponent } from './entities/organization/organization-
 import { PersonDetailComponent } from './entities/person/person-detail.component';
 import { LoginComponent } from './pages/login/login.component';
 import { AddComponent } from './pages/add/add.component';
+import { PermissionsComponent } from './pages/permissions/permissions.component';
 
 export const appRoutes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: 'home', component: HomeComponent },
-  { path: 'roles', component: RolesComponent },
-  { path: 'management', component: ManagementComponent },
-  { path: 'login', component: LoginComponent },
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  {
+    path: '', component: MainComponent,
+    children: [
+      { path: 'home', component: HomeComponent },
+      { path: 'roles', component: RolesComponent },
+      { path: 'permissions', component: PermissionsComponent },
+      { path: 'management', component: ManagementComponent },
+      { path: 'login', component: LoginComponent }
+    ]
+  },
   /*{
     path: 'home', component: HomeComponent,
     children: [

@@ -41,7 +41,9 @@ On Windows might help: https://www.youtube.com/watch?time_continue=42&v=Mn1xOHAH
 open console or terminal:
 
  cassandra
+ 
  cqlsh
+ 
  source '~/docs/cassandra_init/init.cql'
 
 ### Loopback

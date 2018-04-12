@@ -1,83 +1,115 @@
-<mat-card class="mat-elevation-z0" style="background-color:transparent;">
-  <div class="perm-header">
-    <mat-form-field>
-      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
-    </mat-form-field>
-  </div>
+<mat-card class="mat-elevation-z0">
+  <a mat-raised-button routerLink="/add" color="primary" class="btn-margin">New</a>
+  <a mat-button routerLink=".">Import</a>
+</mat-card>
 
+<div class="perm-content">
   <div class="perm-container mat-elevation-z1">
+    <div class="perm-loading-shade" *ngIf="isLoadingResults || isRateLimitReached">
+      <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+      <div class="perm-rate-limit-reached" *ngIf="isRateLimitReached">
+        Ooppsie! Something went wrong. Try again later.
+      </div>
+    </div>
 
-    <mat-table [dataSource]="dataSource" matSort>
-
-      <ng-container matColumnDef="servicename">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> S name </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.servicename}} </mat-cell>
+    <mat-table #table [dataSource]="dataSource" class="perm-table" matSort matSortActive="created" matSortDisableClear matSortDirection="asc">
+      <ng-container matColumnDef="appname">
+        <mat-header-cell *matHeaderCellDef>App</mat-header-cell>
+        <mat-cell *matCellDef="let row">{{ row.appname }}</mat-cell>
       </ng-container>
 
-      <ng-container matColumnDef="serviceuser">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> S user </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.serviceuser}} </mat-cell>
+      <ng-container matColumnDef="patname">
+        <mat-header-cell *matHeaderCellDef>Patient</mat-header-cell>
+        <mat-cell *matCellDef="let row">{{ row.patname }}</mat-cell>
       </ng-container>
 
-      <ng-container matColumnDef="resource">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> R name </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.resource}} </mat-cell>
+      <ng-container matColumnDef="resname">
+        <mat-header-cell *matHeaderCellDef>Resource</mat-header-cell>
+        <mat-cell *matCellDef="let row">{{ row.resname }}</mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="c">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> C </mat-header-cell>
-        <mat-cell *matCellDef="let row">
+        <mat-header-cell *matHeaderCellDef>C</mat-header-cell>
+        <mat-cell *matCellDef="let row" class="col-select">
           <mat-checkbox></mat-checkbox>
         </mat-cell>
       </ng-container>
+
       <ng-container matColumnDef="r">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> R </mat-header-cell>
-        <mat-cell *matCellDef="let row">
+        <mat-header-cell *matHeaderCellDef>R</mat-header-cell>
+        <mat-cell *matCellDef="let row" class="col-select">
           <mat-checkbox></mat-checkbox>
         </mat-cell>
       </ng-container>
+
       <ng-container matColumnDef="u">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> U </mat-header-cell>
-        <mat-cell *matCellDef="let row">
+        <mat-header-cell *matHeaderCellDef>U</mat-header-cell>
+        <mat-cell *matCellDef="let row" class="col-select">
           <mat-checkbox></mat-checkbox>
         </mat-cell>
       </ng-container>
+
       <ng-container matColumnDef="d">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> D </mat-header-cell>
-        <mat-cell *matCellDef="let row">
+        <mat-header-cell *matHeaderCellDef>D</mat-header-cell>
+        <mat-cell *matCellDef="let row" class="col-select">
           <mat-checkbox></mat-checkbox>
         </mat-cell>
       </ng-container>
+
       <ng-container matColumnDef="from">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> From </mat-header-cell>
-        <mat-cell *matCellDef="let row">
-          <mat-form-field>
-            <input matInput [matDatepicker]="picker" placeholder="Choose a date">
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-          </mat-form-field>
-        </mat-cell>
+        <mat-header-cell *matHeaderCellDef>Start</mat-header-cell>
+        <mat-cell *matCellDef="let row">{{ row.start | date:'shortDate' }}</mat-cell>
       </ng-container>
+
       <ng-container matColumnDef="to">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> To </mat-header-cell>
-        <mat-cell *matCellDef="let row">
-          <mat-form-field>
-            <input matInput [matDatepicker]="picker" placeholder="Choose a date">
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-          </mat-form-field>
+        <mat-header-cell *matHeaderCellDef>End</mat-header-cell>
+        <mat-cell *matCellDef="let row">{{ row.end | date:'shortDate' }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="requestername">
+        <mat-header-cell *matHeaderCellDef>Requester</mat-header-cell>
+        <mat-cell *matCellDef="let row">{{ row.requestername }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="providername">
+        <mat-header-cell *matHeaderCellDef>Provider</mat-header-cell>
+        <mat-cell *matCellDef="let row">{{ row.providername }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="when">
+        <mat-header-cell *matHeaderCellDef>When</mat-header-cell>
+        <mat-cell *matCellDef="let row">{{ row.when | date:'shortDate' }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="edit">
+        <mat-header-cell *matHeaderCellDef class="icon-cell">
+          <mat-icon>edit</mat-icon>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row" [style.color]="'orange'" class="icon-cell">
+          <mat-icon class="pointer">edit</mat-icon>
         </mat-cell>
       </ng-container>
-      <ng-container matColumnDef="requestuser">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> R user </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.requestuser}} </mat-cell>
+
+      <ng-container matColumnDef="delete">
+        <mat-header-cell *matHeaderCellDef class="icon-cell">
+          <mat-icon>close</mat-icon>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row" [style.color]="'red'" class="icon-cell">
+          <mat-icon class="pointer">close</mat-icon>
+        </mat-cell>
       </ng-container>
+      <!-- <ng-container matColumnDef="created">
+        <mat-header-cell *matHeaderCellDef mat-sort-header disableClear="true">
+          Created
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row">{{ row.created_at | date }}</mat-cell>
+      </ng-container> -->
 
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-      <mat-row *matRowDef="let row; columns: displayedColumns;">
-      </mat-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
     </mat-table>
 
-    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+    <mat-paginator [length]="resultsLength" [pageSize]="30">
+    </mat-paginator>
   </div>
-</mat-card>
+</div>

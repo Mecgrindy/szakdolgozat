@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Person } from '../../entities/person/person';
+import { Person } from '../entities/person/person';
 
 @Injectable()
 export class SidenavService {

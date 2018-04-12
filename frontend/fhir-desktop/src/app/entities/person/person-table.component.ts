@@ -12,7 +12,8 @@ import { map } from 'rxjs/operators/map';
 import { startWith } from 'rxjs/operators/startWith';
 import { switchMap } from 'rxjs/operators/switchMap';
 import { SelectionModel } from '@angular/cdk/collections';
-import { SidenavService } from '../../components/sidenav/sidenav.service';
+import { SidenavService } from '../../services/sidenav.service';
+
 
 @Component({
   selector: 'app-person-table',
@@ -21,7 +22,7 @@ import { SidenavService } from '../../components/sidenav/sidenav.service';
   styleUrls: ['./person.component.css']
 })
 export class PersonTableComponent implements OnInit {
-  displayedColumns = ['select', 'identifier', 'name', 'birthDate', 'gender', 'active', 'view', 'edit', 'delete'];
+  displayedColumns = ['select', 'identifier', 'telecom', 'name', 'birthDate', 'gender', 'view', 'edit', 'delete'];
   personDatabase: PersonService | null;
   dataSource = new MatTableDataSource<Person>();
   isLoadingResults = true;

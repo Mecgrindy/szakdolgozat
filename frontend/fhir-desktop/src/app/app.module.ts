@@ -57,8 +57,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { MainComponent } from './main/main.component';
-import { ToolbarComponent } from './components/toolbar/toolbar.component';
-import { SidenavComponent } from './components/sidenav/sidenav.component';
 
 @NgModule({
   exports: [
@@ -103,7 +101,7 @@ export class MyMaterialModule { }
     AppComponent, NotFoundComponent, HomeComponent, PersonTableComponent, GroupListComponent, OrganizationListComponent,
     DeleteDialogComponent, PersonDetailComponent, ClickStopPropagationDirective,
     LoginComponent, AddComponent, TranslatePipe, ManagementComponent,
-    RolesComponent, PermissionsComponent, MainComponent, ToolbarComponent, SidenavComponent
+    RolesComponent, PermissionsComponent, MainComponent
   ],
   imports: [
     BrowserModule, BrowserAnimationsModule, MyMaterialModule, ReactiveFormsModule, FormsModule, HttpClientModule,

@@ -46,5 +46,9 @@
   "organization": {
     "dataSource": "fhir-cassandra",
     "public": true
+  },
+  "acl": {
+    "dataSource": "fhir-cassandra",
+    "public": true
   }
 }

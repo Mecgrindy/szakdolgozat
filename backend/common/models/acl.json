@@ -1,0 +1,57 @@
+{
+  "name": "acl",
+  "plural": "acls",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "appid": {
+      "type": "string"
+    },
+    "appname": {
+      "type": "string"
+    },
+    "patid": {
+      "type": "string"
+    },
+    "patname": {
+      "type": "string"
+    },
+    "resid": {
+      "type": "string"
+    },
+    "resname": {
+      "type": "string"
+    },
+    "accesslevel": {
+      "type": "number"
+    },
+    "start": {
+      "type": "date"
+    },
+    "end": {
+      "type": "date"
+    },
+    "requesterid": {
+      "type": "string"
+    },
+    "requestername": {
+      "type": "string"
+    },
+    "providerid": {
+      "type": "string"
+    },
+    "providername": {
+      "type": "string"
+    },
+    "when": {
+      "type": "date"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

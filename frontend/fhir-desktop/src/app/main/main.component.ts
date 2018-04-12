@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '../translate';
-import { SidenavService } from '../components/sidenav/sidenav.service';
-
 @Component({
   selector: 'app-main',
-  providers: [SidenavService],
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.css']
 })

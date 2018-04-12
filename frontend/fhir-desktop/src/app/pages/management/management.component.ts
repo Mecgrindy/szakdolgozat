@@ -1,5 +1,6 @@
 import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
-import { SidenavService } from '../../components/sidenav/sidenav.service';
+import { SidenavService } from '../../services/sidenav.service';
+
 
 @Component({
   selector: 'app-management',

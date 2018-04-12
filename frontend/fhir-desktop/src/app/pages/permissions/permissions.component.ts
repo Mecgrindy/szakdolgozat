@@ -1,68 +1,89 @@
+import { config } from './../../app.config';
+import { merge } from 'rxjs/observable/merge';
+import { startWith } from 'rxjs/operators/startWith';
+import { switchMap } from 'rxjs/operators/switchMap';
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
+import { HttpClient } from '@angular/common/http';
+import { of as observableOf } from 'rxjs/observable/of';
+import { Observable } from 'rxjs/Observable';
+import { catchError } from 'rxjs/operators/catchError';
+import { map } from 'rxjs/operators/map';
 
 @Component({
   selector: 'app-permissions',
   templateUrl: './permissions.component.html',
   styleUrls: ['./permissions.component.css']
 })
-export class PermissionsComponent implements AfterViewInit {
+export class PermissionsComponent implements OnInit {
 
-  displayedColumns = ['servicename', 'serviceuser', 'resource', 'c', 'r', 'u', 'd', 'from', 'to', 'requestuser'];
-  dataSource: MatTableDataSource<UserData>;
+  displayedColumns = ['appname', 'patname', 'resname', 'c', 'r', 'u', 'd', 'from',
+    'to', 'requestername', 'providername', 'when', 'edit', 'delete'];
+  exampleDatabase: PermHttpDao | null;
+  dataSource = new MatTableDataSource();
+
+  resultsLength = 0;
+  isLoadingResults = true;
+  isRateLimitReached = false;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor() {
-    // Create 100 users
-    const users: UserData[] = [];
-    for (let i = 1; i <= 100; i++) { users.push(createNewUser(i)); }
+  constructor(private http: HttpClient) { }
 
-    // Assign the data to the data source for the table to render
-    this.dataSource = new MatTableDataSource(users);
-  }
+  ngOnInit() {
+    this.exampleDatabase = new PermHttpDao(this.http);
 
-  /**
-   * Set the paginator and sort after the view init since this component will
-   * be able to query its view for the initialized paginator and sort.
-   */
-  // tslint:disable-next-line:use-life-cycle-interface
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
-  }
+    // If the user changes the sort order, reset back to the first page.
+    this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
 
-  applyFilter(filterValue: string) {
-    filterValue = filterValue.trim(); // Remove whitespace
-    filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
-    this.dataSource.filter = filterValue;
+    merge(this.sort.sortChange, this.paginator.page)
+      .pipe(
+        startWith({}),
+        switchMap(() => {
+          this.isLoadingResults = true;
+          // tslint:disable-next-line:no-non-null-assertion
+          return this.exampleDatabase!.getPerms();
+        }),
+        map(data => {
+          // Flip flag to show that loading has finished.
+          this.isLoadingResults = false;
+          this.isRateLimitReached = false;
+          this.resultsLength = 10;
+
+          return data;
+        }),
+        catchError(() => {
+          this.isLoadingResults = false;
+          // Catch if the GitHub API has reached its rate limit. Return empty data.
+          this.isRateLimitReached = true;
+          return observableOf([]);
+        })
+      ).subscribe(data => this.dataSource.data = data);
   }
 }
 
-/** Builds and returns a new User. */
-function createNewUser(id: number): UserData {
-  const name =
-    NAMES[Math.round(Math.random() * (NAMES.length - 1))] + ' ' +
-    NAMES[Math.round(Math.random() * (NAMES.length - 1))].charAt(0) + '.';
-  const d = new Date().getMonth();
-
-  return {
-    servicename: name,
-    serviceuser: name,
-    resource: name,
-    c: false, r: false, u: false, d: false,
-    from: d, to: d, requestuser: name
-  };
+export interface Acl {
+  appid: string;
+  appname: string;
+  patid: string;
+  patname: string;
+  resid: string;
+  resname: string;
+  accesslevel: number;
+  start: Date;
+  end: Date;
+  requesterid: string;
+  requestername: string;
+  providerid: string;
+  providername: string;
+  when: Date;
 }
-const NAMES = ['Maia', 'Asher', 'Olivia', 'Atticus', 'Amelia', 'Jack',
-  'Charlotte', 'Theodore', 'Isla', 'Oliver', 'Isabella', 'Jasper',
-  'Cora', 'Levi', 'Violet', 'Arthur', 'Mia', 'Thomas', 'Elizabeth'];
 
-export interface UserData {
-  servicename: string;
-  serviceuser: string;
-  resource: string;
-  c: boolean; r: boolean; u: boolean; d: boolean;
-  from: number; to: number; requestuser: string;
+export class PermHttpDao {
+  constructor(private http: HttpClient) { }
+
+  getPerms(): Observable<[Acl]> {
+    return this.http.get<[Acl]>(config.apiHost + '/acls');
+  }
 }

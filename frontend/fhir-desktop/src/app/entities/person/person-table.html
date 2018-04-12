@@ -6,7 +6,7 @@
       <mat-option value="organization">Organization</mat-option>
     </mat-select>
   </mat-form-field>
-  <a mat-raised-button routerLink="add" color="primary" class="btn-margin">New</a>
+  <a mat-raised-button routerLink="/add" color="primary" class="btn-margin">New</a>
   <a mat-button routerLink=".">Import</a>
 </mat-card>
 
@@ -40,6 +40,13 @@
       </mat-cell>
     </ng-container>
 
+    <ng-container matColumnDef="telecom">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Email </mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <span *ngIf="row.telecom!={}">{{row.telecom.email}}</span>
+      </mat-cell>
+    </ng-container>
+
     <ng-container matColumnDef="birthDate">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Birthdate </mat-header-cell>
       <mat-cell *matCellDef="let row"> {{row.birthdate | date:'shortDate'}} </mat-cell>
@@ -48,11 +55,6 @@
     <ng-container matColumnDef="gender">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Gender </mat-header-cell>
       <mat-cell *matCellDef="let row"> {{row.gender}} </mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="active">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Active </mat-header-cell>
-      <mat-cell *matCellDef="let row" [style.color]="row.active?'green':'red'"> {{row.active}} </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="view">

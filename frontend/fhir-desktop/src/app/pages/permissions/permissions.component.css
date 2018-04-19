@@ -59,3 +59,12 @@
   text-align: center;
   flex: 0.4;
 }
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+.perm-form{
+  width: 100%;
+}

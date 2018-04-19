@@ -1,9 +1,109 @@
-<mat-card class="mat-elevation-z0">
+<!-- <mat-card class="mat-elevation-z0">
   <a mat-raised-button routerLink="/add" color="primary" class="btn-margin">New</a>
   <a mat-button routerLink=".">Import</a>
-</mat-card>
+</mat-card> -->
 
 <div class="perm-content">
+  <mat-card class="mat-elevation-z0 transparent">
+    <form class="perm-form">
+      <table class="full-width" cellspacing="10">
+        <tr>
+          <td>
+            <mat-form-field>
+              <input matInput type="text" placeholder="App" />
+              <button mat-button *ngIf="appname" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+                <mat-icon>close</mat-icon>
+              </button>
+            </mat-form-field>
+          </td>
+          <td>
+            <mat-form-field>
+              <input matInput type="text" placeholder="Patient" />
+              <button mat-button *ngIf="appname" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+                <mat-icon>close</mat-icon>
+              </button>
+            </mat-form-field>
+          </td>
+          <td>
+            <mat-form-field>
+              <input matInput type="text" placeholder="Resource" />
+              <button mat-button *ngIf="appname" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+                <mat-icon>close</mat-icon>
+              </button>
+            </mat-form-field>
+          </td>
+        </tr>
+      </table>
+      <table class="full-width" cellspacing="10">
+        <tr>
+          <td>
+            <mat-form-field>
+              <input matInput type="text" placeholder="Requester" />
+              <button mat-button *ngIf="appname" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+                <mat-icon>close</mat-icon>
+              </button>
+            </mat-form-field>
+          </td>
+          <td>
+            <mat-form-field>
+              <input matInput [matDatepicker]="picker" placeholder="Start">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+          </td>
+          <td>
+            <mat-form-field>
+              <input matInput [matDatepicker]="picker2" placeholder="End">
+              <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+              <mat-datepicker #picker2></mat-datepicker>
+            </mat-form-field>
+          </td>
+        </tr>
+      </table>
+      <table class="full-width" cellspacing="10">
+        <tr>
+          <td>
+            <mat-form-field>
+              <input matInput type="text" placeholder="Provider" />
+              <button mat-button *ngIf="appname" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+                <mat-icon>close</mat-icon>
+              </button>
+            </mat-form-field>
+          </td>
+          <td>
+            <mat-form-field>
+              <input matInput [matDatepicker]="picker3" placeholder="Date for When">
+              <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+              <mat-datepicker #picker3></mat-datepicker>
+            </mat-form-field>
+          </td>
+          <td align="center">
+            <mat-card class="mat-elevation-z0 transparent full-width">
+              <mat-radio-group>
+                <mat-radio-button value="1">Before</mat-radio-button>
+                <mat-radio-button value="2">After</mat-radio-button>
+              </mat-radio-group>
+            </mat-card>
+          </td>
+        </tr>
+      </table>
+      <table class="full-width" cellspacing="10">
+        <tr>
+          <td>
+            <mat-slide-toggle>Active</mat-slide-toggle>
+            <mat-slide-toggle>Expired</mat-slide-toggle>
+          </td>
+        </tr>
+      </table>
+      <button mat-raised-button color="primary">Filter</button>
+      <button mat-raised-button>Clear</button>
+    </form>
+  </mat-card>
+  <!-- <div class="perm-header">
+    <mat-form-field>
+      <input matInput placeholder="Filter">
+    </mat-form-field>
+  </div> -->
   <div class="perm-container mat-elevation-z1">
     <div class="perm-loading-shade" *ngIf="isLoadingResults || isRateLimitReached">
       <mat-spinner *ngIf="isLoadingResults"></mat-spinner>

@@ -48,6 +48,9 @@
     },
     "when": {
       "type": "date"
+    },
+    "active": {
+      "type": "boolean"
     }
   },
   "validations": [],

@@ -4,9 +4,7 @@ create keyspace if not exists fhirdb
    'replication_factor' : 1 
   };
 
-use fhirdb;
-
-create table if not exists person (
+create table if not exists fhirdb.person (
   id uuid,
   identifier varchar,
   name varchar,
@@ -21,19 +19,20 @@ create table if not exists person (
   primary key (id, name, insertdate)
 ) with clustering order by (name asc, insertdate desc);
 
-create table if not exists group (
-  id uuid primary key,
+create table if not exists fhirdb.group (
+  id uuid,
   identifier text,
   type text,
   actual boolean,
   code varchar,
   name varchar,
   quantity smallint,
-  active boolean
+  active boolean,
+  primary key (id)
 );
 
-create table if not exists organization(
-  id uuid primary key,
+create table if not exists fhirdb.organization(
+  id uuid,
   identifier text,
   type text,
   name varchar,
@@ -43,9 +42,10 @@ create table if not exists organization(
   partof varchar,
   active boolean,
   endpoint varchar,
+  primary key (id)
 );
 
-create table if not exists acl(
+create table if not exists fhirdb.acl(
   id uuid,
   appid varchar,
   appname text,
@@ -61,11 +61,20 @@ create table if not exists acl(
   providerid varchar,
   providername text,
   when date,
-  primary key(id, appname)
-) with clustering order by (appname asc);
+  active boolean,
+  primary key((id), appname, patname, resname, requestername, providername)
+);
 
-create index if not exists on acl (appname);
-create index if not exists on acl (patname);
-create index if not exists on acl (resname);
-create index if not exists on acl (requestername);
-create index if not exists on acl (providername);
+create materialized view fhirdb.aclappnameasc as
+select id, appname, patname, resname, requestername, providername from fhirdb.acl
+where appid is not null and appname is not null and patname is not null and resname
+is not null and requestername is not null and providername is not null
+primary key((appid), appname, patname, resname, requestername, providername, id)
+with clustering order by (appname asc);
+
+create materialized view fhirdb.aclappnamedesc as
+select id, appname, patname, resname, requestername, providername from fhirdb.acl
+where appid is not null and appname is not null and patname is not null and resname
+is not null and requestername is not null and providername is not null
+primary key((appid), appname, patname, resname, requestername, providername, id)
+with clustering order by (appname desc);

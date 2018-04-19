@@ -26,6 +26,8 @@ export class PermissionsComponent implements OnInit {
   isLoadingResults = true;
   isRateLimitReached = false;
 
+  appname = 'Clear me';
+
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 

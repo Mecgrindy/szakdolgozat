@@ -47,3 +47,11 @@ body{
 .pointer{
   cursor: pointer;
 }
+
+.transparent{
+  background-color: transparent;
+}
+
+.full-width{
+  width: 100%;
+}

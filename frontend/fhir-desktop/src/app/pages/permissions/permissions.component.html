@@ -1,33 +1,28 @@
-<!-- <mat-card class="mat-elevation-z0">
-  <a mat-raised-button routerLink="/add" color="primary" class="btn-margin">New</a>
-  <a mat-button routerLink=".">Import</a>
-</mat-card> -->
-
 <div class="perm-content">
   <mat-card class="mat-elevation-z0 transparent">
-    <form class="perm-form">
+    <form class="perm-form" [formGroup]="permForm">
       <table class="full-width" cellspacing="10">
         <tr>
           <td>
             <mat-form-field>
-              <input matInput type="text" placeholder="App" />
-              <button mat-button *ngIf="appname" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+              <input matInput type="text" placeholder="App" formControlName="appname" />
+              <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="clearControl('appname')">
                 <mat-icon>close</mat-icon>
               </button>
             </mat-form-field>
           </td>
           <td>
             <mat-form-field>
-              <input matInput type="text" placeholder="Patient" />
-              <button mat-button *ngIf="appname" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+              <input matInput type="text" placeholder="Patient" formControlName="patname" />
+              <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="clearControl('patname')">
                 <mat-icon>close</mat-icon>
               </button>
             </mat-form-field>
           </td>
           <td>
             <mat-form-field>
-              <input matInput type="text" placeholder="Resource" />
-              <button mat-button *ngIf="appname" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+              <input matInput type="text" placeholder="Resource" formControlName="resname" />
+              <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="clearControl('resname')">
                 <mat-icon>close</mat-icon>
               </button>
             </mat-form-field>
@@ -38,22 +33,22 @@
         <tr>
           <td>
             <mat-form-field>
-              <input matInput type="text" placeholder="Requester" />
-              <button mat-button *ngIf="appname" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+              <input matInput type="text" placeholder="Requester" formControlName="requestername" />
+              <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="clearControl('requestername')">
                 <mat-icon>close</mat-icon>
               </button>
             </mat-form-field>
           </td>
           <td>
             <mat-form-field>
-              <input matInput [matDatepicker]="picker" placeholder="Start">
+              <input matInput [matDatepicker]="picker" placeholder="Start" formControlName="start">
               <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
               <mat-datepicker #picker></mat-datepicker>
             </mat-form-field>
           </td>
           <td>
             <mat-form-field>
-              <input matInput [matDatepicker]="picker2" placeholder="End">
+              <input matInput [matDatepicker]="picker2" placeholder="End" formControlName="end">
               <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
               <mat-datepicker #picker2></mat-datepicker>
             </mat-form-field>
@@ -64,24 +59,24 @@
         <tr>
           <td>
             <mat-form-field>
-              <input matInput type="text" placeholder="Provider" />
-              <button mat-button *ngIf="appname" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+              <input matInput type="text" placeholder="Provider" formControlName="providername" />
+              <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="clearControl('providername')">
                 <mat-icon>close</mat-icon>
               </button>
             </mat-form-field>
           </td>
           <td>
             <mat-form-field>
-              <input matInput [matDatepicker]="picker3" placeholder="Date for When">
+              <input matInput [matDatepicker]="picker3" placeholder="Date for When" formControlName="when">
               <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
               <mat-datepicker #picker3></mat-datepicker>
             </mat-form-field>
           </td>
           <td align="center">
             <mat-card class="mat-elevation-z0 transparent full-width">
-              <mat-radio-group>
-                <mat-radio-button value="1">Before</mat-radio-button>
-                <mat-radio-button value="2">After</mat-radio-button>
+              <mat-radio-group formControlName="whenadj">
+                <mat-radio-button value="before">Before</mat-radio-button>
+                <mat-radio-button value="after">After</mat-radio-button>
               </mat-radio-group>
             </mat-card>
           </td>
@@ -90,20 +85,15 @@
       <table class="full-width" cellspacing="10">
         <tr>
           <td>
-            <mat-slide-toggle>Active</mat-slide-toggle>
-            <mat-slide-toggle>Expired</mat-slide-toggle>
+            <mat-slide-toggle formControlName="active">Active</mat-slide-toggle>
+            <mat-slide-toggle formControlName="expired">Skip expired</mat-slide-toggle>
           </td>
         </tr>
       </table>
-      <button mat-raised-button color="primary">Filter</button>
-      <button mat-raised-button>Clear</button>
+      <button mat-raised-button color="primary" (click)="filter()">Filter</button>
+      <button mat-raised-button (click)="clearFilter()">Clear</button>
     </form>
   </mat-card>
-  <!-- <div class="perm-header">
-    <mat-form-field>
-      <input matInput placeholder="Filter">
-    </mat-form-field>
-  </div> -->
   <div class="perm-container mat-elevation-z1">
     <div class="perm-loading-shade" *ngIf="isLoadingResults || isRateLimitReached">
       <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
@@ -112,19 +102,19 @@
       </div>
     </div>
 
-    <mat-table #table [dataSource]="dataSource" class="perm-table" matSort matSortActive="created" matSortDisableClear matSortDirection="asc">
+    <mat-table #table [dataSource]="dataSource" class="perm-table" matSort>
       <ng-container matColumnDef="appname">
-        <mat-header-cell *matHeaderCellDef>App</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header>App</mat-header-cell>
         <mat-cell *matCellDef="let row">{{ row.appname }}</mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="patname">
-        <mat-header-cell *matHeaderCellDef>Patient</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Patient</mat-header-cell>
         <mat-cell *matCellDef="let row">{{ row.patname }}</mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="resname">
-        <mat-header-cell *matHeaderCellDef>Resource</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Resource</mat-header-cell>
         <mat-cell *matCellDef="let row">{{ row.resname }}</mat-cell>
       </ng-container>
 
@@ -167,12 +157,12 @@
       </ng-container>
 
       <ng-container matColumnDef="requestername">
-        <mat-header-cell *matHeaderCellDef>Requester</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Requester</mat-header-cell>
         <mat-cell *matCellDef="let row">{{ row.requestername }}</mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="providername">
-        <mat-header-cell *matHeaderCellDef>Provider</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Provider</mat-header-cell>
         <mat-cell *matCellDef="let row">{{ row.providername }}</mat-cell>
       </ng-container>
 
@@ -190,20 +180,14 @@
         </mat-cell>
       </ng-container>
 
-      <ng-container matColumnDef="delete">
-        <mat-header-cell *matHeaderCellDef class="icon-cell">
-          <mat-icon>close</mat-icon>
+      <ng-container matColumnDef="active">
+        <mat-header-cell *matHeaderCellDef>
+          Active
         </mat-header-cell>
-        <mat-cell *matCellDef="let row" [style.color]="'red'" class="icon-cell">
-          <mat-icon class="pointer">close</mat-icon>
+        <mat-cell *matCellDef="let row">
+          <mat-slide-toggle [checked]='row.active'></mat-slide-toggle>
         </mat-cell>
       </ng-container>
-      <!-- <ng-container matColumnDef="created">
-        <mat-header-cell *matHeaderCellDef mat-sort-header disableClear="true">
-          Created
-        </mat-header-cell>
-        <mat-cell *matCellDef="let row">{{ row.created_at | date }}</mat-cell>
-      </ng-container> -->
 
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
       <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>

@@ -29,10 +29,10 @@
       "type": "number"
     },
     "start": {
-      "type": "date"
+      "type": "any"
     },
     "end": {
-      "type": "date"
+      "type": "any"
     },
     "requesterid": {
       "type": "string"
@@ -47,7 +47,7 @@
       "type": "string"
     },
     "when": {
-      "type": "date"
+      "type": "any"
     },
     "active": {
       "type": "boolean"

@@ -9,6 +9,8 @@ import { of as observableOf } from 'rxjs/observable/of';
 import { Observable } from 'rxjs/Observable';
 import { catchError } from 'rxjs/operators/catchError';
 import { map } from 'rxjs/operators/map';
+import { FormGroup, FormControl } from '@angular/forms';
+import { Acl } from '../../entities/acl/acl';
 
 @Component({
   selector: 'app-permissions',
@@ -18,34 +20,61 @@ import { map } from 'rxjs/operators/map';
 export class PermissionsComponent implements OnInit {
 
   displayedColumns = ['appname', 'patname', 'resname', 'c', 'r', 'u', 'd', 'from',
-    'to', 'requestername', 'providername', 'when', 'edit', 'delete'];
+    'to', 'requestername', 'providername', 'when', 'edit', 'active'];
   exampleDatabase: PermHttpDao | null;
   dataSource = new MatTableDataSource();
 
   resultsLength = 0;
   isLoadingResults = true;
   isRateLimitReached = false;
-
-  appname = 'Clear me';
+  viewName = 'acl';
+  permForm: FormGroup | null;
+  init = false;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    this.permForm = new FormGroup({
+      active: new FormControl(false),
+      appname: new FormControl(''),
+      patname: new FormControl(''),
+      resname: new FormControl(''),
+      requestername: new FormControl(''),
+      providername: new FormControl(''),
+      start: new FormControl(''),
+      end: new FormControl(''),
+      when: new FormControl(''),
+      whenadj: new FormControl(''),
+      expired: new FormControl(false)
+    });
+  }
 
   ngOnInit() {
     this.exampleDatabase = new PermHttpDao(this.http);
-
+    this.filter();
     // If the user changes the sort order, reset back to the first page.
-    this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
-
+    // this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
+  }
+  clearControl(control: string) {
+    this.permForm.controls[control].setValue('');
+  }
+  clearFilter() {
+    this.permForm.reset();
+    this.filter();
+  }
+  filter() {
     merge(this.sort.sortChange, this.paginator.page)
       .pipe(
         startWith({}),
         switchMap(() => {
           this.isLoadingResults = true;
+          this.viewName = 'acl';
+          if (this.sort.active !== undefined && this.sort.direction !== '') {
+            this.viewName += this.sort.active + this.sort.direction;
+          }
           // tslint:disable-next-line:no-non-null-assertion
-          return this.exampleDatabase!.getPerms();
+          return this.exampleDatabase!.getPerms(this.viewName, this.permForm);
         }),
         map(data => {
           // Flip flag to show that loading has finished.
@@ -65,27 +94,17 @@ export class PermissionsComponent implements OnInit {
   }
 }
 
-export interface Acl {
-  appid: string;
-  appname: string;
-  patid: string;
-  patname: string;
-  resid: string;
-  resname: string;
-  accesslevel: number;
-  start: Date;
-  end: Date;
-  requesterid: string;
-  requestername: string;
-  providerid: string;
-  providername: string;
-  when: Date;
-}
-
 export class PermHttpDao {
   constructor(private http: HttpClient) { }
 
-  getPerms(): Observable<[Acl]> {
-    return this.http.get<[Acl]>(config.apiHost + '/acls');
+  getPerms(viewName: string, permForm: FormGroup): Observable<[Acl]> {
+    let requestUrl = '?viewname=' + viewName;
+    Object.keys(permForm.controls).forEach(key => {
+      const control = permForm.get(key);
+      if (control.value !== '' && control.value != null) {
+        requestUrl += '&' + key + '=' + control.value;
+      }
+    });
+    return this.http.get<[Acl]>(config.apiHost + 'acls/byView' + requestUrl);
   }
 }

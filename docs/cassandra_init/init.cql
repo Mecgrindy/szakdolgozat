@@ -15,7 +15,7 @@ create table if not exists fhirdb.person (
   photo varchar,
   managingOrganization varchar,
   active boolean,
-  insertdate date,
+  insertdate timestamp,
   primary key (id, name, insertdate)
 ) with clustering order by (name asc, insertdate desc);
 
@@ -54,27 +54,83 @@ create table if not exists fhirdb.acl(
   resid varchar,
   resname text,
   accesslevel tinyint,
-  start date,
-  end date,
+  start timestamp,
+  end timestamp,
   requesterid varchar,
   requestername text,
   providerid varchar,
   providername text,
-  when date,
+  when timestamp,
   active boolean,
   primary key((id), appname, patname, resname, requestername, providername)
 );
 
 create materialized view fhirdb.aclappnameasc as
-select id, appname, patname, resname, requestername, providername from fhirdb.acl
-where appid is not null and appname is not null and patname is not null and resname
+select * from fhirdb.acl
+where  active is not null and appname is not null and patname is not null and resname
 is not null and requestername is not null and providername is not null
-primary key((appid), appname, patname, resname, requestername, providername, id)
+primary key((active), appname, patname, resname, requestername, providername, id)
 with clustering order by (appname asc);
 
 create materialized view fhirdb.aclappnamedesc as
-select id, appname, patname, resname, requestername, providername from fhirdb.acl
-where appid is not null and appname is not null and patname is not null and resname
+select * from fhirdb.acl
+where active is not null and appname is not null and patname is not null and resname
 is not null and requestername is not null and providername is not null
-primary key((appid), appname, patname, resname, requestername, providername, id)
+primary key((active), appname, patname, resname, requestername, providername, id)
 with clustering order by (appname desc);
+
+create materialized view fhirdb.aclpatnameasc as
+select * from fhirdb.acl
+where active is not null and patname is not null and appname is not null and resname
+is not null and requestername is not null and providername is not null
+primary key((active), patname, appname, resname, requestername, providername, id)
+with clustering order by (patname asc);
+
+create materialized view fhirdb.aclpatnamedesc as
+select * from fhirdb.acl
+where active is not null and patname is not null and appname is not null and resname
+is not null and requestername is not null and providername is not null
+primary key((active), patname, appname, resname, requestername, providername, id)
+with clustering order by (patname desc);
+
+create materialized view fhirdb.aclresnameasc as
+select * from fhirdb.acl
+where active is not null and resname is not null and appname is not null and patname
+is not null and requestername is not null and providername is not null
+primary key((active), resname, appname, patname, requestername, providername, id)
+with clustering order by (resname asc);
+
+create materialized view fhirdb.aclresnamedesc as
+select * from fhirdb.acl
+where active is not null and resname is not null and appname is not null and patname
+is not null and requestername is not null and providername is not null
+primary key((active), resname, appname, patname, requestername, providername, id)
+with clustering order by (resname desc);
+
+create materialized view fhirdb.aclrequesternameasc as
+select * from fhirdb.acl
+where active is not null and requestername is not null and appname is not null and patname
+is not null and resname is not null and providername is not null
+primary key((active), requestername, appname, patname, resname, providername, id)
+with clustering order by (requestername asc);
+
+create materialized view fhirdb.aclrequesternamedesc as
+select * from fhirdb.acl
+where active is not null and requestername is not null and appname is not null and patname
+is not null and resname is not null and providername is not null
+primary key((active), requestername, appname, patname, resname, providername, id)
+with clustering order by (requestername desc);
+
+create materialized view fhirdb.aclprovidernameasc as
+select * from fhirdb.acl
+where active is not null and providername is not null and appname is not null and patname
+is not null and resname is not null and requestername is not null
+primary key((active), providername, appname, patname, resname, requestername, id)
+with clustering order by (providername asc);
+
+create materialized view fhirdb.aclprovidernamedesc as
+select * from fhirdb.acl
+where active is not null and providername is not null and appname is not null and patname
+is not null and resname is not null and requestername is not null
+primary key((active), providername, appname, patname, resname, requestername, id)
+with clustering order by (providername desc);

@@ -2,7 +2,7 @@
 
 var loopback = require('loopback');
 var boot = require('loopback-boot');
-var app = module.exports = loopback();
+var app = loopback();
 
 
 app.start = function () {

@@ -1,0 +1,12 @@
+use fhirdb;
+drop materialized view aclappnameasc;
+drop materialized view aclappnamedesc;
+drop materialized view aclpatnameasc;
+drop materialized view aclpatnamedesc;
+drop materialized view aclresnameasc;
+drop materialized view aclresnamedesc;
+drop materialized view aclrequesternameasc;
+drop materialized view aclrequesternamedesc;
+drop materialized view aclprovidernameasc;
+drop materialized view aclprovidernamedesc;
+drop table acl;

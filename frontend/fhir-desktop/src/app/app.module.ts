@@ -57,6 +57,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { MainComponent } from './main/main.component';
+import { AddPermComponent } from './pages/add-perm/add-perm.component';
 
 @NgModule({
   exports: [
@@ -101,7 +102,7 @@ export class MyMaterialModule { }
     AppComponent, NotFoundComponent, HomeComponent, PersonTableComponent, GroupListComponent, OrganizationListComponent,
     DeleteDialogComponent, PersonDetailComponent, ClickStopPropagationDirective,
     LoginComponent, AddComponent, TranslatePipe, ManagementComponent,
-    RolesComponent, PermissionsComponent, MainComponent
+    RolesComponent, PermissionsComponent, MainComponent, AddPermComponent
   ],
   imports: [
     BrowserModule, BrowserAnimationsModule, MyMaterialModule, ReactiveFormsModule, FormsModule, HttpClientModule,

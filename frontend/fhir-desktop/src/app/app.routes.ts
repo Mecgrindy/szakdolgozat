@@ -1,3 +1,5 @@
+import { AddPermComponent } from './pages/add-perm/add-perm.component';
+import { Component } from '@angular/core';
 import { MainComponent } from './main/main.component';
 import { RolesComponent } from './pages/roles/roles.component';
 import { AppComponent } from './app.component';
@@ -22,7 +24,7 @@ export const appRoutes: Routes = [
       { path: 'roles', component: RolesComponent },
       { path: 'permissions', component: PermissionsComponent },
       { path: 'management', component: ManagementComponent },
-      { path: 'login', component: LoginComponent }
+      { path: 'login', component: LoginComponent },
     ]
   },
   /*{
@@ -37,6 +39,7 @@ export const appRoutes: Routes = [
     ]
   },*/
   { path: 'add', component: AddComponent },
+  { path: 'addperm', component: AddPermComponent },
 
   { path: '**', component: NotFoundComponent },
   /*{ path: '', component: CoverComponent },

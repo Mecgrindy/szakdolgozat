@@ -1,4 +1,5 @@
-export interface Acl {
+export class Acl {
+  id: string;
   appid: string;
   appname: string;
   patid: string;

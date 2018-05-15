@@ -1,9 +1,10 @@
+import { PermService } from './perm.service';
 import { config } from './../../app.config';
 import { merge } from 'rxjs/observable/merge';
 import { startWith } from 'rxjs/operators/startWith';
 import { switchMap } from 'rxjs/operators/switchMap';
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
-import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
+import { MatTableDataSource, MatSort, MatPaginator, MatDialog } from '@angular/material';
 import { HttpClient } from '@angular/common/http';
 import { of as observableOf } from 'rxjs/observable/of';
 import { Observable } from 'rxjs/Observable';
@@ -11,16 +12,18 @@ import { catchError } from 'rxjs/operators/catchError';
 import { map } from 'rxjs/operators/map';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Acl } from '../../entities/acl/acl';
+import { DeleteDialogComponent } from '../../modals/modals';
 
 @Component({
   selector: 'app-permissions',
+  providers: [PermService],
   templateUrl: './permissions.component.html',
   styleUrls: ['./permissions.component.css']
 })
 export class PermissionsComponent implements OnInit {
 
   displayedColumns = ['appname', 'patname', 'resname', 'c', 'r', 'u', 'd', 'from',
-    'to', 'requestername', 'providername', 'when', 'edit', 'active'];
+    'to', 'requestername', 'providername', 'when', 'edit', 'active', 'delete'];
   exampleDatabase: PermHttpDao | null;
   dataSource = new MatTableDataSource();
 
@@ -34,7 +37,7 @@ export class PermissionsComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, public dialog: MatDialog, public permService: PermService) {
     this.permForm = new FormGroup({
       active: new FormControl(false),
       appname: new FormControl(''),
@@ -52,7 +55,7 @@ export class PermissionsComponent implements OnInit {
 
   ngOnInit() {
     this.exampleDatabase = new PermHttpDao(this.http);
-    this.filter();
+    this.Filter();
     // If the user changes the sort order, reset back to the first page.
     // this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
   }
@@ -61,9 +64,9 @@ export class PermissionsComponent implements OnInit {
   }
   clearFilter() {
     this.permForm.reset();
-    this.filter();
+    this.Filter();
   }
-  filter() {
+  Filter() {
     merge(this.sort.sortChange, this.paginator.page)
       .pipe(
         startWith({}),
@@ -92,6 +95,50 @@ export class PermissionsComponent implements OnInit {
         })
       ).subscribe(data => this.dataSource.data = data);
   }
+  openDialog(title: string, id: string): void {
+    const dialogRef = this.dialog.open(DeleteDialogComponent, {
+      width: '250px',
+      data: { title: title, id: id }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.permService.deletePerm(result).subscribe(resp => {
+          const index = this.dataSource.data.findIndex(function (x: Acl) { return x.id === id; });
+          this.dataSource.data.splice(index, 1);
+          this.dataSource._updateChangeSubscription();
+        });
+      }
+    });
+  }
+  toggleActivity(acl: Acl) {
+    acl.active = !acl.active;
+    this.permService.updatePerm(acl).subscribe(resp => {
+      const index = this.dataSource.data.findIndex(function (x: Acl) { return x.id === resp.id; });
+      this.dataSource.data[index] = resp;
+      this.dataSource._updateChangeSubscription();
+    });
+  }
+  getAccess(accessLevel: number, index: number) {
+    let bin: string = accessLevel.toString(2);
+    if (bin.length !== 4) {
+      const nmbnull = 4 - bin.length;
+      for (let i = 0; i < nmbnull; i++) {
+        bin = '0' + bin;
+      }
+    }
+    return bin[index];
+  }
+  setAccess(acl: Acl, numb: number, checkState: string) {
+    if (Number(checkState)) {
+      numb = -numb;
+    }
+    acl.accesslevel += numb;
+    this.permService.updatePerm(acl).subscribe(resp => {
+      const index = this.dataSource.data.findIndex(function (x: Acl) { return x.id === resp.id; });
+      this.dataSource.data[index] = resp;
+      this.dataSource._updateChangeSubscription();
+    });
+  }
 }
 
 export class PermHttpDao {
@@ -105,6 +152,6 @@ export class PermHttpDao {
         requestUrl += '&' + key + '=' + control.value;
       }
     });
-    return this.http.get<[Acl]>(config.apiHost + 'acls/byView' + requestUrl);
+    return this.http.get<[Acl]>(config.apiHost + 'acls' + requestUrl);
   }
 }

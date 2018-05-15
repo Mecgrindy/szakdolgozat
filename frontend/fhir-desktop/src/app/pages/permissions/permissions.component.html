@@ -90,7 +90,7 @@
           </td>
         </tr>
       </table>
-      <button mat-raised-button color="primary" (click)="filter()">Filter</button>
+      <button mat-raised-button color="primary" (click)="Filter()">Filter</button>
       <button mat-raised-button (click)="clearFilter()">Clear</button>
     </form>
   </mat-card>
@@ -121,28 +121,28 @@
       <ng-container matColumnDef="c">
         <mat-header-cell *matHeaderCellDef>C</mat-header-cell>
         <mat-cell *matCellDef="let row" class="col-select">
-          <mat-checkbox></mat-checkbox>
+          <mat-checkbox [checked]="getAccess(row.accesslevel, 0)" (change)="setAccess(row, 8, getAccess(row.accesslevel, 0))"></mat-checkbox>
         </mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="r">
         <mat-header-cell *matHeaderCellDef>R</mat-header-cell>
         <mat-cell *matCellDef="let row" class="col-select">
-          <mat-checkbox></mat-checkbox>
+          <mat-checkbox [checked]="getAccess(row.accesslevel, 1)" (change)="setAccess(row, 4, getAccess(row.accesslevel, 1))"></mat-checkbox>
         </mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="u">
         <mat-header-cell *matHeaderCellDef>U</mat-header-cell>
         <mat-cell *matCellDef="let row" class="col-select">
-          <mat-checkbox></mat-checkbox>
+          <mat-checkbox [checked]="getAccess(row.accesslevel, 2)" (change)="setAccess(row, 2, getAccess(row.accesslevel, 2))"></mat-checkbox>
         </mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="d">
         <mat-header-cell *matHeaderCellDef>D</mat-header-cell>
         <mat-cell *matCellDef="let row" class="col-select">
-          <mat-checkbox></mat-checkbox>
+          <mat-checkbox [checked]="getAccess(row.accesslevel, 3)" (change)="setAccess(row, 1, getAccess(row.accesslevel, 3))"></mat-checkbox>
         </mat-cell>
       </ng-container>
 
@@ -172,10 +172,10 @@
       </ng-container>
 
       <ng-container matColumnDef="edit">
-        <mat-header-cell *matHeaderCellDef class="icon-cell">
+        <mat-header-cell *matHeaderCellDef>
           <mat-icon>edit</mat-icon>
         </mat-header-cell>
-        <mat-cell *matCellDef="let row" [style.color]="'orange'" class="icon-cell">
+        <mat-cell *matCellDef="let row" [style.color]="'orange'">
           <mat-icon class="pointer">edit</mat-icon>
         </mat-cell>
       </ng-container>
@@ -185,7 +185,16 @@
           Active
         </mat-header-cell>
         <mat-cell *matCellDef="let row">
-          <mat-slide-toggle [checked]='row.active'></mat-slide-toggle>
+          <mat-slide-toggle [checked]='row.active' (change)="toggleActivity(row)"></mat-slide-toggle>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="delete">
+        <mat-header-cell *matHeaderCellDef class="icon-cell">
+          <mat-icon>close</mat-icon>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row" [style.color]="'red'" class="icon-cell" (click)="openDialog('Permission', row.id)">
+          <mat-icon class="pointer">close</mat-icon>
         </mat-cell>
       </ng-container>
 
@@ -196,4 +205,5 @@
     <mat-paginator [length]="resultsLength" [pageSize]="30">
     </mat-paginator>
   </div>
+  <button mat-raised-button color="primary" routerLink="/addperm" style="margin-top: 16px;">Add</button>
 </div>

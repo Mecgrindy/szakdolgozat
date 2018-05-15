@@ -1,7 +1,7 @@
 {
   "name": "acl",
   "plural": "acls",
-  "base": "PersistedModel",
+  "base": "Model",
   "idInjection": true,
   "options": {
     "validateUpsert": true

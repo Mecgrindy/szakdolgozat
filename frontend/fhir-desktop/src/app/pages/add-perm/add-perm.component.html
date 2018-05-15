@@ -1,0 +1,83 @@
+<div class="centering">
+  <mat-card class="add-perm-panel">
+    <button mat-icon-button class="back-margin" routerLink="/permissions">
+      <mat-icon aria-label="Back">arrow_back</mat-icon>
+    </button>
+    <mat-divider></mat-divider>
+    <form [formGroup]="addPermForm" class="full-width">
+      <table class="full-width" cellspacing="10">
+        <tr>
+          <td>
+            <mat-form-field>
+              <input matInput placeholder="App" aria-label="Appname" [matAutocomplete]="appauto" formControlName="appname">
+              <mat-autocomplete #appauto="matAutocomplete">
+                <mat-option *ngFor="let app of filteredApps | async" [value]="app.name">
+                  <span>{{ app.name }}</span> |
+                  <small>id: {{app.id}}</small>
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field>
+          </td>
+          <td>
+            <mat-form-field>
+              <input matInput type="text" placeholder="Patient" formControlName="patname" />
+              <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="clearControl('patname')">
+                <mat-icon>close</mat-icon>
+              </button>
+            </mat-form-field>
+          </td>
+          <td>
+            <mat-form-field>
+              <input matInput type="text" placeholder="Resource" formControlName="resname" />
+              <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="clearControl('resname')">
+                <mat-icon>close</mat-icon>
+              </button>
+            </mat-form-field>
+          </td>
+        </tr>
+      </table>
+      <table class="full-width" cellspacing="10">
+        <tr>
+          <td>
+            <mat-form-field>
+              <input matInput type="text" placeholder="Requester" formControlName="requestername" />
+              <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="clearControl('requestername')">
+                <mat-icon>close</mat-icon>
+              </button>
+            </mat-form-field>
+          </td>
+          <td>
+            <mat-form-field>
+              <input matInput [matDatepicker]="picker" placeholder="Start" formControlName="start">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+          </td>
+          <td>
+            <mat-form-field>
+              <input matInput [matDatepicker]="picker2" placeholder="End" formControlName="end">
+              <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+              <mat-datepicker #picker2></mat-datepicker>
+            </mat-form-field>
+          </td>
+        </tr>
+      </table>
+      <table cellspacing="10">
+        <tr>
+          <td>
+            <mat-slide-toggle formControlName="active">Active</mat-slide-toggle>
+          </td>
+          <td>
+            <mat-form-field>
+              <input matInput type="number" placeholder="Access Level" formControlName="accesslevel" />
+            </mat-form-field>
+          </td>
+        </tr>
+      </table>
+      <div class="padding-16">
+        <button mat-raised-button color="primary" (click)="Add()">Add</button>
+        <button mat-raised-button (click)="Clear()">Clear</button>
+      </div>
+    </form>
+  </mat-card>
+</div>

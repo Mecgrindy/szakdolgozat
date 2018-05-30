@@ -29,21 +29,21 @@
     <ng-container matColumnDef="identifier">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Taj </mat-header-cell>
       <mat-cell *matCellDef="let row">
-        <span *ngIf="row.identifier!={}">{{row.identifier.taj}} </span>
+        <span *ngIf="row.identifier!={}">{{row.identifier[0]}} </span>
       </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="name">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
       <mat-cell *matCellDef="let row">
-        <span *ngIf="row.name!={}">{{row.name.lastname}} {{ row.name.surname}} </span>
+        <span *ngIf="row.name!={}">{{row.name[0].text}}</span>
       </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="telecom">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Email </mat-header-cell>
       <mat-cell *matCellDef="let row">
-        <span *ngIf="row.telecom!={}">{{row.telecom.email}}</span>
+        <span *ngIf="row.telecom!={}">{{row.telecom[0].value}}</span>
       </mat-cell>
     </ng-container>
 

@@ -10,14 +10,15 @@ create table if not exists fhirdb.person (
   name varchar,
   telecom varchar,
   gender text,
-  birthDate date,
+  birthDate varchar,
   address varchar,
   photo varchar,
   managingOrganization varchar,
   active boolean,
-  insertdate timestamp,
-  primary key (id, name, insertdate)
-) with clustering order by (name asc, insertdate desc);
+  link varchar,
+  extension varchar,
+  primary key (id)
+);
 
 create table if not exists fhirdb.group (
   id uuid,

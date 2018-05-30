@@ -35,6 +35,34 @@
     "dataSource": "db",
     "public": false
   },
+  "Extension": {
+    "dataSource": "transient",
+    "public": false
+  },
+  "Period": {
+    "dataSource": "transient",
+    "public": false
+  },
+  "HumanName": {
+    "dataSource": "transient",
+    "public": false
+  },
+  "ContactPoint": {
+    "dataSource": "transient",
+    "public": false
+  },
+  "Link": {
+    "dataSource": "transient",
+    "public": false
+  },
+  "Address": {
+    "dataSource": "transient",
+    "public": false
+  },
+  "Attachment": {
+    "dataSource": "transient",
+    "public": false
+  },
   "person": {
     "dataSource": "fhir-cassandra",
     "public": true

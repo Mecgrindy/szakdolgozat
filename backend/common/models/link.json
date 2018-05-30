@@ -1,0 +1,21 @@
+{
+  "name": "Link",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "target": {
+      "type": "string",
+      "required": true
+    },
+    "assurance": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

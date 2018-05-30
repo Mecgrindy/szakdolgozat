@@ -1,0 +1,41 @@
+{
+  "name": "HumanName",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "use": {
+      "type": "string"
+    },
+    "text": {
+      "type": "string"
+    },
+    "family": {
+      "type": "string"
+    },
+    "given": {
+      "type": [
+        "string"
+      ]
+    },
+    "prefix": {
+      "type": [
+        "string"
+      ]
+    },
+    "suffix": {
+      "type": [
+        "string"
+      ]
+    },
+    "period": {
+      "type": "Period"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

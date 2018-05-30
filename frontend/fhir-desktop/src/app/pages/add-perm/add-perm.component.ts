@@ -72,9 +72,8 @@ export class AddPermComponent implements OnInit {
       app.name.toLowerCase().indexOf(name.toLowerCase()) === 0);
   }
   Add() {
-    this.permService.addPerm(this.addPermForm.value).subscribe(resp => { });
-  }
-  Clear() {
-    this.addPermForm.reset(this.startValues);
+    if (this.addPermForm.valid) {
+      this.permService.addPerm(this.addPermForm.value).subscribe(resp => { });
+    }
   }
 }

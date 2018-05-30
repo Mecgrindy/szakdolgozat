@@ -1,0 +1,29 @@
+{
+  "name": "ContactPoint",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "system": {
+      "type": "string"
+    },
+    "value": {
+      "type": "string"
+    },
+    "use": {
+      "type": "string"
+    },
+    "rank": {
+      "type": "number"
+    },
+    "period": {
+      "type": "Period"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

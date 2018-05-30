@@ -8,41 +8,63 @@
   },
   "properties": {
     "identifier": {
-      "type": "object"
+      "type": [
+        "string"
+      ]
     },
     "name": {
-      "type": "object"
+      "type": [
+        "HumanName"
+      ],
+      "required": true
     },
     "telecom": {
-      "type": "object"
+      "type": [
+        "ContactPoint"
+      ],
+      "required": true
     },
     "gender": {
       "type": "string"
     },
     "birthdate": {
-      "type": "date"
+      "type": "string",
+      "format": "date"
     },
     "address": {
       "type": [
-        "string"
+        "Address"
       ]
     },
     "photo": {
-      "type": "string"
+      "type": "Attachment"
     },
     "managingorganization": {
       "type": "string"
     },
     "active": {
-      "type": "boolean",
-      "default": true
+      "type": "boolean"
     },
-    "insertdate": {
-      "type": "date"
+    "link": {
+      "type": [
+        "Link"
+      ]
+    },
+    "extension": {
+      "type": [
+        "Extension"
+      ],
+      "required": true
     }
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+    "orders": {
+      "type": "hasMany",
+      "model": "Order",
+      "foreignKey": "customerId"
+    }
+  },
   "acls": [],
   "methods": {}
 }

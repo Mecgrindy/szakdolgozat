@@ -1,15 +1,16 @@
 export interface Person {
   id: string;
-  identifier: string;
-  name: [string];
+  identifier: [string];
+  name: any;
   telecom: any;
   gender: string;
   birthDate: Date;
-  address: [string];
-  photo: string;
+  address: any;
+  photo: any;
   managingOrganization: string;
   active: boolean;
   link: any;
+  extension: any;
 }
 
 export interface PersonCount {

@@ -5,7 +5,7 @@
       <mat-list-item>
         <img matListAvatar src="https://material.angular.io/assets/img/examples/shiba1.jpg" alt="kutya">
         <h3 matLine>
-          <b *ngIf="sidenavService.data.name!={}">{{sidenavService.data.name.lastname}} {{sidenavService.data.name.surname}} </b>
+          <b *ngIf="sidenavService.data.name!={}">{{sidenavService.data.name[0].text}}</b>
         </h3>
         <span class="toolbar-spacer"></span>
         <button mat-icon-button (click)="closeNav()" class="close-btn">
@@ -17,7 +17,7 @@
         <mat-tab label="Basic">
           <mat-list>
             <mat-list-item>
-              Taj: {{sidenavService.data.identifier.taj}}
+              Taj: {{sidenavService.data.identifier[0]}}
             </mat-list-item>
             <mat-list-item>
               Gender: {{sidenavService.data.gender}}
@@ -34,16 +34,13 @@
             <mat-divider></mat-divider>
             <mat-list>
               <h3 matSubheader>Telecom</h3>
-              <mat-list-item>
-                email: {{sidenavService.data.telecom.email}}
-              </mat-list-item>
-              <mat-list-item>
-                phone: {{sidenavService.data.telecom.phone}}
+              <mat-list-item *ngFor="let tele of sidenavService.data.telecom">
+                {{tele.system}}: {{tele.value}}
               </mat-list-item>
               <mat-divider></mat-divider>
               <h3 matSubheader>Address</h3>
               <mat-list-item *ngFor="let add of sidenavService.data.address">
-                {{add}}
+                {{add.use}}: {{add.text}}
               </mat-list-item>
             </mat-list>
           </mat-list>

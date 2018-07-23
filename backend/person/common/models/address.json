@@ -6,7 +6,7 @@
     "validateUpsert": true
   },
   "properties": {
-    "use": {
+    "uses": {
       "type": "string"
     },
     "type": {

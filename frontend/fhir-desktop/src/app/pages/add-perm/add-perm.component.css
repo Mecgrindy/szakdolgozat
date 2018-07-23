@@ -1,19 +1,19 @@
-.add-perm-panel{
+.add-perm-panel {
   width: 80vw;
   min-width: 320px;
   min-height: 320px;
   padding: 0;
 }
-.radio-margin{
+
+.radio-margin {
   margin: 16px 5px;
 }
-.back-margin{
+
+.back-margin {
   margin-left: 16px;
 }
+
 .mat-form-field {
   font-size: 14px;
   width: 100%;
-}
-.padding-16{
-  padding: 16px;
 }

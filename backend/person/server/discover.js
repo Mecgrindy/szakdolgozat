@@ -1,8 +1,8 @@
 var app = require('./server');
-var dataSource = app.dataSources["fhir-cassandra"];
+var dataSource = app.dataSources["person-cassandra"];
 
 dataSource.discoverSchema('person', {
-  owner: 'fhirdb'
+  owner: 'person-cassandra'
 }, function(err, schema) {
   console.log(JSON.stringify(schema, null, '  '));
 });

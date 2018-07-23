@@ -8,6 +8,6 @@ export class GroupService {
   constructor(private http: HttpClient) { }
 
   getGroups() {
-    return this.http.get<[Group]>(config.apiHost + 'groups');
+    return this.http.get<[Group]>(config.apiHostPerson + 'groups');
   }
 }

@@ -13,6 +13,7 @@ import { startWith } from 'rxjs/operators/startWith';
 import { switchMap } from 'rxjs/operators/switchMap';
 import { SelectionModel } from '@angular/cdk/collections';
 import { SidenavService } from '../../services/sidenav.service';
+import { config } from '../../app.config';
 
 
 @Component({
@@ -22,14 +23,15 @@ import { SidenavService } from '../../services/sidenav.service';
   styleUrls: ['./person.component.css']
 })
 export class PersonTableComponent implements OnInit {
-  displayedColumns = ['select', 'identifier', 'telecom', 'name', 'birthDate', 'gender', 'view', 'edit', 'delete'];
-  personDatabase: PersonService | null;
+  displayedColumns = ['select', 'identifier', 'email', 'nametext', 'birthdate', 'gender', 'view', 'edit', 'delete'];
+  personDatabase: PersonHttpDao | null;
   dataSource = new MatTableDataSource<Person>();
   isLoadingResults = true;
   isError = false;
   persons: [Person];
   personService: PersonService;
   selection: SelectionModel<Person>;
+  viewName = 'person';
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   constructor(public dialog: MatDialog, private http: HttpClient, personService: PersonService, public sidenavService: SidenavService) {
@@ -39,14 +41,18 @@ export class PersonTableComponent implements OnInit {
     this.selection = new SelectionModel<Person>(allowMultiSelect, initialSelection);
   }
   ngOnInit() {
-    this.personDatabase = new PersonService(this.http);
+    this.personDatabase = new PersonHttpDao(this.http);
     this.getPersons();
   }
   getPersons() {
-    merge().pipe(startWith({}), switchMap(() => {
+    merge(this.sort.sortChange, this.paginator.page).pipe(startWith({}), switchMap(() => {
       this.isLoadingResults = true;
+      this.viewName = 'person';
+      if (this.sort.active !== undefined && this.sort.direction !== '') {
+        this.viewName += this.sort.active + this.sort.direction;
+      }
       // tslint:disable-next-line:no-non-null-assertion
-      return this.personDatabase!.getPersons();
+      return this.personDatabase!.getPersons(this.viewName);
     }), map(data => {
       this.isLoadingResults = false;
       return data;
@@ -55,7 +61,9 @@ export class PersonTableComponent implements OnInit {
       this.isError = true;
       return observableOf([]);
     })
-    ).subscribe(data => { this.dataSource.data = data; });
+    ).subscribe(data => {
+      this.dataSource.data = data;
+    });
   }
   // tslint:disable-next-line:use-life-cycle-interface
   ngAfterViewInit() {
@@ -80,7 +88,7 @@ export class PersonTableComponent implements OnInit {
   openDialog(name: any, id: string): void {
     const dialogRef = this.dialog.open(DeleteDialogComponent, {
       width: '250px',
-      data: { name: name, id: id }
+      data: { title: name, id: id }
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
@@ -101,5 +109,13 @@ export class PersonTableComponent implements OnInit {
     });
     this.sidenavService.sidenav.open();
     this.sidenavService.prevId = id;
+  }
+}
+
+export class PersonHttpDao {
+  constructor(private http: HttpClient) { }
+
+  getPersons(viewName: string): Observable<[Person]> {
+    return this.http.get<[Person]>(config.apiHostPerson + 'persons' + '?viewname=' + viewName);
   }
 }

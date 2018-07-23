@@ -64,19 +64,7 @@
     "public": false
   },
   "person": {
-    "dataSource": "fhir-cassandra",
-    "public": true
-  },
-  "group": {
-    "dataSource": "fhir-cassandra",
-    "public": true
-  },
-  "organization": {
-    "dataSource": "fhir-cassandra",
-    "public": true
-  },
-  "acl": {
-    "dataSource": "fhir-cassandra",
+    "dataSource": "person-cassandra",
     "public": true
   }
 }

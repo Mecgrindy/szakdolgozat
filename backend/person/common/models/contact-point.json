@@ -1,34 +1,22 @@
 {
-  "name": "HumanName",
+  "name": "ContactPoint",
   "base": "PersistedModel",
   "idInjection": true,
   "options": {
     "validateUpsert": true
   },
   "properties": {
-    "use": {
+    "system": {
       "type": "string"
     },
-    "text": {
+    "value": {
       "type": "string"
     },
-    "family": {
+    "uses": {
       "type": "string"
     },
-    "given": {
-      "type": [
-        "string"
-      ]
-    },
-    "prefix": {
-      "type": [
-        "string"
-      ]
-    },
-    "suffix": {
-      "type": [
-        "string"
-      ]
+    "rank": {
+      "type": "number"
     },
     "period": {
       "type": "Period"

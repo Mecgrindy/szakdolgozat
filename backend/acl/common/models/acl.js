@@ -2,11 +2,11 @@
 
 module.exports = function (Acl) {
 
-  Acl.byView = function (viewname, active, appname, patname, resname, requestername, providername, start, end, when, expired, whenadj, cb) {
+  Acl.byView = function (viewname, active, appname, patname, resname, requestername, providername, start, end, when, expired, whenadj, lastId, limit, cb) {
     var ds = Acl.dataSource;
-    var paramnames = ['viewname', 'active', 'appname', 'patname', 'resname', 'requestername', 'providername', 'start', 'end', 'when', 'expired', 'whenadj', 'cb']
+    var paramnames = ['viewname', 'active', 'appname', 'patname', 'resname', 'requestername', 'providername', 'start', 'end', 'when', 'expired', 'whenadj', 'lastId', 'limit', 'cb']
     var params = [];
-    var where = '', allfill = '', extraQuery = '', expString = '';
+    var where = '', allfill = '', extraQuery = '', expString = '', limitstr = '', id = '';
     var firstTime = true;
 
     var getQueryParam = function (arg, argname) {
@@ -29,12 +29,12 @@ module.exports = function (Acl) {
     if (viewname === undefined)
       viewname = 'acl';
     for (var i in arguments) {
-      if (arguments[i] && i > 0 && i < arguments.length - 3) {
+      if (arguments[i] && i > 0 && i < arguments.length - 5) {
         params.push(arguments[i]);
         extraQuery += getQueryParam(arguments[i], paramnames[i]);
       }
     }
-    if (params.length > 0 || expired === true) {
+    if (params.length > 0 || expired === true || lastId) {
       where = ' WHERE ';
       allfill = ' allow filtering;';
     }
@@ -43,10 +43,27 @@ module.exports = function (Acl) {
         expString += ' and ';
       expString += 'end>=\'' + +new Date() + '\'';
     }
-
-    var sql = 'SELECT * FROM ' + viewname + where + extraQuery + expString + allfill;
+    if (limit)
+      limitstr += ' limit ' + limit + ' ';
+    // SELECT * FROM acl where token(id) >= token(bc4aee80-87ed-41af-b9aa-9d8ce47d37cd) LIMIT 5;
+    if (lastId)
+      id += ' token(id, active) > token(' + lastId + ') ';
+    var sql = 'SELECT * FROM ' + viewname + where + extraQuery + expString + id + limitstr + allfill;
+    console.log(sql);
 
     ds.connector.query(sql, params, function (err, sqlResp) {
+      if (err) console.error(err);
+      cb(err, sqlResp);
+    });
+  };
+
+  Acl.count = function (viewname, cb) {
+    if (!viewname)
+      viewname = 'acl';
+    var ds = Acl.dataSource;
+    var sql = 'SELECT COUNT(*) FROM ' + viewname;
+
+    ds.connector.query(sql, [], function (err, sqlResp) {
       if (err) console.error(err);
       cb(err, sqlResp);
     });
@@ -139,6 +156,8 @@ module.exports = function (Acl) {
       { arg: 'when', type: 'string' },
       { arg: 'expired', type: 'boolean' },
       { arg: 'whenadj', type: 'string' },
+      { arg: 'lastId', type: 'string' },
+      { arg: 'limit', type: 'number' },
     ],
     returns: { arg: 'data', type: ['acl'], root: true }
   });
@@ -148,6 +167,12 @@ module.exports = function (Acl) {
     description: 'Get acl row by id',
     accepts: { arg: 'id', type: 'string' },
     returns: { arg: 'data', type: 'acl', root: true }
+  });
+
+  Acl.remoteMethod('count', {
+    returns: [{ type: 'number', arg: 'data', root: true }],
+    http: { verb: 'get', path: '/count' },
+    description: 'Count acl'
   });
 
   Acl.remoteMethod('deleteById', {

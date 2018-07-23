@@ -5,7 +5,7 @@
       <mat-list-item>
         <img matListAvatar src="https://material.angular.io/assets/img/examples/shiba1.jpg" alt="kutya">
         <h3 matLine>
-          <b *ngIf="sidenavService.data.name!={}">{{sidenavService.data.name[0].text}}</b>
+          <b *ngIf="sidenavService.data.name!=null">{{sidenavService.data.name[0].text}}</b>
         </h3>
         <span class="toolbar-spacer"></span>
         <button mat-icon-button (click)="closeNav()" class="close-btn">
@@ -16,7 +16,7 @@
       <mat-tab-group>
         <mat-tab label="Basic">
           <mat-list>
-            <mat-list-item>
+            <mat-list-item *ngIf="sidenavService.data.identifier!=null">
               Taj: {{sidenavService.data.identifier[0]}}
             </mat-list-item>
             <mat-list-item>
@@ -25,7 +25,7 @@
             <mat-list-item>
               Birth Date: {{sidenavService.data.birthdate | date: 'shortDate'}}
             </mat-list-item>
-            <mat-list-item class="org-center">
+            <mat-list-item class="org-center" *ngIf="sidenavService.data.managingorganization!=null">
               <button mat-button>
                 {{sidenavService.data.managingorganization}}
                 <mat-icon class="toolbar-icon">launch</mat-icon>

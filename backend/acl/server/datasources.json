@@ -3,16 +3,12 @@
     "name": "db",
     "connector": "memory"
   },
-  "transient": {
-    "name": "transient",
-    "connector": "transient"
-  },
-  "fhir-cassandra": {
+  "acl-cassandra": {
     "host": "localhost",
     "port": 9042,
-    "database": "fhirdb",
+    "database": "fhirdbacl",
     "password": "",
-    "name": "fhir-cassandra",
+    "name": "acl-cassandra",
     "user": "",
     "connectTimeout": 30000,
     "readTimeout": 30000,

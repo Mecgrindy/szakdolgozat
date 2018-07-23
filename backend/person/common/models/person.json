@@ -12,10 +12,18 @@
         "string"
       ]
     },
+    "nametext": {
+      "type": "string",
+      "required": true
+    },
     "name": {
       "type": [
         "HumanName"
       ],
+      "required": true
+    },
+    "email": {
+      "type": "string",
       "required": true
     },
     "telecom": {
@@ -50,7 +58,7 @@
         "Link"
       ]
     },
-    "extension": {
+    "extension": { 
       "type": [
         "Extension"
       ],

@@ -1,3 +1,4 @@
 export const config = {
-  'apiHost': 'http://localhost:3000/api/',
+  'apiHostPerson': 'http://localhost:3000/api/',
+  'apiHostAcl': 'http://localhost:3001/api/'
 };

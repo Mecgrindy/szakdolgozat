@@ -27,27 +27,27 @@
   <mat-table [dataSource]="dataSource" matSort class="persons-table">
 
     <ng-container matColumnDef="identifier">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Taj </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef> Taj </mat-header-cell>
       <mat-cell *matCellDef="let row">
-        <span *ngIf="row.identifier!={}">{{row.identifier[0]}} </span>
+        <span *ngIf="row.identifier!=null">{{row.identifier[0]}} </span>
       </mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="name">
+    <ng-container matColumnDef="nametext">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
       <mat-cell *matCellDef="let row">
-        <span *ngIf="row.name!={}">{{row.name[0].text}}</span>
+        <span>{{row.nametext}}</span>
       </mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="telecom">
+    <ng-container matColumnDef="email">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Email </mat-header-cell>
       <mat-cell *matCellDef="let row">
-        <span *ngIf="row.telecom!={}">{{row.telecom[0].value}}</span>
+        <span>{{row.email}}</span>
       </mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="birthDate">
+    <ng-container matColumnDef="birthdate">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Birthdate </mat-header-cell>
       <mat-cell *matCellDef="let row"> {{row.birthdate | date:'shortDate'}} </mat-cell>
     </ng-container>
@@ -79,7 +79,7 @@
       <mat-header-cell *matHeaderCellDef class="icon-cell">
         <mat-icon>close</mat-icon>
       </mat-header-cell>
-      <mat-cell *matCellDef="let row" [style.color]="'red'" class="icon-cell" (click)="openDialog(row.name, row.id)">
+      <mat-cell *matCellDef="let row" [style.color]="'red'" class="icon-cell" (click)="openDialog(row.nametext, row.id)">
         <mat-icon class="pointer">close</mat-icon>
       </mat-cell>
     </ng-container>

@@ -1,0 +1,21 @@
+{
+  "db": {
+    "name": "db",
+    "connector": "memory"
+  },
+  "transient": {
+    "name": "transient",
+    "connector": "transient"
+  },
+  "person-cassandra": {
+    "host": "localhost",
+    "port": 9042,
+    "database": "fhirdbperson",
+    "password": "",
+    "name": "person-cassandra",
+    "user": "",
+    "connectTimeout": 30000,
+    "readTimeout": 30000,
+    "connector": "cassandra"
+  }
+}

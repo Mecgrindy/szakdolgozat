@@ -8,6 +8,6 @@ export class OrganizationService {
   constructor(private http: HttpClient) { }
 
   getOrganizations() {
-    return this.http.get<[Organization]>(config.apiHost + 'organizations');
+    return this.http.get<[Organization]>(config.apiHostPerson + 'organizations');
   }
 }

@@ -1,4 +1,4 @@
-use fhirdb;
+use fhirdbacl;
 drop materialized view aclappnameasc;
 drop materialized view aclappnamedesc;
 drop materialized view aclpatnameasc;
@@ -10,3 +10,22 @@ drop materialized view aclrequesternamedesc;
 drop materialized view aclprovidernameasc;
 drop materialized view aclprovidernamedesc;
 drop table acl;
+
+use fhirdbperson;
+drop materialized view personnametextasc;
+drop materialized view personnametextdesc;
+drop materialized view personemailasc;
+drop materialized view personemaildesc;
+drop materialized view personbirthdateasc;
+drop materialized view personbirthdatedesc;
+drop materialized view persongenderasc;
+drop materialized view persongenderdesc;
+drop table person;
+
+drop type period;
+drop type humanname;
+drop type contactpoint;
+drop type address;
+drop type attachment;
+drop type link;
+drop type extension;

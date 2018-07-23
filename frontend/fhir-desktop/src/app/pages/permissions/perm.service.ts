@@ -9,14 +9,18 @@ export class PermService {
   constructor(private http: HttpClient) { }
 
   deletePerm(id: string) {
-    return this.http.delete(config.apiHost + 'acls/' + id);
+    return this.http.delete(config.apiHostAcl + 'acls/' + id);
   }
 
   addPerm(acl: Acl) {
-    return this.http.post<Acl>(config.apiHost + 'acls/', { 'data': acl });
+    return this.http.post<Acl>(config.apiHostAcl + 'acls/', { 'data': acl });
+  }
+
+  Count() {
+    return this.http.get<number>(config.apiHostAcl + 'acls/count');
   }
 
   updatePerm(acl: Acl) {
-    return this.http.post<Acl>(config.apiHost + 'acls/updateOne', { 'data': acl });
+    return this.http.post<Acl>(config.apiHostAcl + 'acls/updateOne', { 'data': acl });
   }
 }

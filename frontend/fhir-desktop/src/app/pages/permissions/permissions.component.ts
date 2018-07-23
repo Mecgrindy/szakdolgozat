@@ -33,6 +33,7 @@ export class PermissionsComponent implements OnInit {
   viewName = 'acl';
   permForm: FormGroup | null;
   init = false;
+  lastId = '';
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -55,9 +56,13 @@ export class PermissionsComponent implements OnInit {
 
   ngOnInit() {
     this.exampleDatabase = new PermHttpDao(this.http);
+    this.sort.sortChange.subscribe(() => {
+      this.paginator.pageIndex = 0;
+      this.lastId = '';
+      this.Filter();
+    });
+    this.getNumberofAcls();
     this.Filter();
-    // If the user changes the sort order, reset back to the first page.
-    // this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
   }
   clearControl(control: string) {
     this.permForm.controls[control].setValue('');
@@ -66,6 +71,7 @@ export class PermissionsComponent implements OnInit {
     this.permForm.reset();
     this.Filter();
   }
+
   Filter() {
     merge(this.sort.sortChange, this.paginator.page)
       .pipe(
@@ -73,27 +79,48 @@ export class PermissionsComponent implements OnInit {
         switchMap(() => {
           this.isLoadingResults = true;
           this.viewName = 'acl';
+          let limit = 0;
           if (this.sort.active !== undefined && this.sort.direction !== '') {
             this.viewName += this.sort.active + this.sort.direction;
           }
+          if (this.paginator.pageSize === undefined) {
+            this.paginator.pageSize = 5;
+          }
+          limit = this.paginator.pageSize;
+          if (this.paginator.pageIndex === 0) {
+            this.lastId = '';
+          }
+          if (this.paginator.pageIndex * this.paginator.pageSize > this.resultsLength) {
+            limit = this.resultsLength - this.paginator.pageIndex - 1 * this.paginator.pageSize;
+          }
           // tslint:disable-next-line:no-non-null-assertion
-          return this.exampleDatabase!.getPerms(this.viewName, this.permForm);
+          return this.exampleDatabase!.getPerms(this.viewName, this.permForm, this.lastId, limit);
         }),
         map(data => {
-          // Flip flag to show that loading has finished.
           this.isLoadingResults = false;
           this.isRateLimitReached = false;
-          this.resultsLength = 10;
-
+          this.getNumberofAcls();
+          // this.resultsLength = 100;
           return data;
         }),
         catchError(() => {
           this.isLoadingResults = false;
-          // Catch if the GitHub API has reached its rate limit. Return empty data.
           this.isRateLimitReached = true;
           return observableOf([]);
         })
-      ).subscribe(data => this.dataSource.data = data);
+      ).subscribe(data => {
+        this.lastId = '';
+        if (data[data.length - 1]) {
+          this.lastId = data[data.length - 1].id;
+        }
+        this.dataSource.data = data;
+      });
+  }
+
+  getNumberofAcls() {
+    this.permService.Count().subscribe(resp => {
+      this.resultsLength = resp;
+    });
   }
   openDialog(title: string, id: string): void {
     const dialogRef = this.dialog.open(DeleteDialogComponent, {
@@ -144,7 +171,8 @@ export class PermissionsComponent implements OnInit {
 export class PermHttpDao {
   constructor(private http: HttpClient) { }
 
-  getPerms(viewName: string, permForm: FormGroup): Observable<[Acl]> {
+  getPerms(viewName: string, permForm: FormGroup, lastId: string, limit: number): Observable<[Acl]> {
+    console.log(lastId + '' + limit);
     let requestUrl = '?viewname=' + viewName;
     Object.keys(permForm.controls).forEach(key => {
       const control = permForm.get(key);
@@ -152,6 +180,10 @@ export class PermHttpDao {
         requestUrl += '&' + key + '=' + control.value;
       }
     });
-    return this.http.get<[Acl]>(config.apiHost + 'acls' + requestUrl);
+    requestUrl += '&limit=' + limit;
+    if (lastId !== '') {
+      requestUrl += '&lastId=' + lastId;
+    }
+    return this.http.get<[Acl]>(config.apiHostAcl + 'acls' + requestUrl);
   }
 }
